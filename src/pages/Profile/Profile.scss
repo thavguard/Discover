@@ -1,0 +1,25 @@
+.user {
+  font-size: 20px;
+  margin: 20px 0 30px 0;
+  span {
+    font-weight: 600;
+  }
+
+  div {
+    font-size: 16px;
+  }
+}
+
+.create-item {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.your-ads {
+  font-size: 20px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #212121;
+}

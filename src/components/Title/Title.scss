@@ -1,0 +1,13 @@
+.title {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  &__welcome {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  &__products {
+    font-size: 16px;
+  }
+}
