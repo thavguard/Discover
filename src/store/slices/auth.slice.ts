@@ -1,49 +1,95 @@
-import { API } from "./../../API/axios";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AuthSlice } from "./../../types/IAuthSlice";
+import { IUser } from "./../../types/IUser";
+import { AuthResponse } from "./../../types/response/AuthResponse";
+import { API_URL, axios } from "./../../API/axios";
+import axiosLib from "axios";
+
+import {
+  createAsyncThunk,
+  createSlice,
+  Dispatch,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { ItemType } from "../../types/types";
 
-type Data = {
-  data: {
-    username: string;
-    token: string;
-  };
-};
-
-type AuthData = {
-  username: string;
-  password: string;
-};
-
-export const fetchAuth = createAsyncThunk(
-  "auth/fetchAuth",
-  async ({ username, password }: AuthData) => {
-    const { data }: Data = await API.post("auth/login", {
-      username,
-      password,
-    });
-
-    return data;
-  }
-);
-
-type Auth = {
-  username: string;
-  token: string;
-};
-
-const initialState: Auth = {
-  username: "",
-  token: "",
+const initialState: AuthSlice = {
+  user: {} as IUser,
+  isAuth: false,
+  isLoading: false,
 };
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchAuth.fulfilled, (state, action) => {
-      state.username = action.payload.username;
-      state.token = action.payload.token;
-    });
+  reducers: {
+    setAuth(state, action: PayloadAction<boolean>) {
+      state.isAuth = action.payload;
+    },
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload;
+    },
+
+    setUser(state, action: PayloadAction<IUser>) {
+      state.user = action.payload;
+    },
   },
 });
+
+export const login =
+  (email: string, password: string) => async (dispatch: Dispatch) => {
+    try {
+      const response = await axios.post<AuthResponse>("/auth/login", {
+        email,
+        password,
+      });
+      localStorage.setItem("token", response.data.accessToken);
+      dispatch(authSlice.actions.setAuth(true));
+      dispatch(authSlice.actions.setUser(response.data.user));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+export const registration =
+  (email: string, password: string) => async (dispatch: Dispatch) => {
+    try {
+      const response = await axios.post<AuthResponse>("/auth/registration", {
+        email,
+        password,
+      });
+      localStorage.setItem("token", response.data.accessToken);
+      dispatch(authSlice.actions.setAuth(true));
+      dispatch(authSlice.actions.setUser(response.data.user));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+export const logout = () => async (dispatch: Dispatch) => {
+  try {
+    const response = await axios.post<void>("/auth/logout");
+
+    localStorage.removeItem("token");
+    dispatch(authSlice.actions.setAuth(false));
+    dispatch(authSlice.actions.setUser({} as IUser));
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const checkAuth = () => async (dispatch: Dispatch) => {
+  dispatch(authSlice.actions.setLoading(true));
+  try {
+    const response = await axiosLib.get<AuthResponse>(
+      `${API_URL}/auth/refresh`,
+      { withCredentials: true }
+    );
+    localStorage.setItem("token", response.data.accessToken);
+    dispatch(authSlice.actions.setAuth(true));
+    dispatch(authSlice.actions.setUser(response.data.user));
+  } catch (error) {
+    console.log(error);
+  } finally {
+    dispatch(authSlice.actions.setLoading(false));
+  }
+};

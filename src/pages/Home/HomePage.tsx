@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import Item from "../../components/Item/Item";
-import Items from "../../components/Items/Items";
-import Title from "../../components/Title/Title";
+import Items from "../../components/Home/Items/Items";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items.slice";
 import "./HomePage.scss";
+import Title from "../../components/core-ui/Title/Title";
 
 const HomePage = () => {
   const { items } = useAppSelector((state) => state.items);

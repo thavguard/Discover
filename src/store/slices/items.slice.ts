@@ -1,9 +1,9 @@
 import { ItemType } from "./../../types/types";
-import { API } from "./../../API/axios";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { axios } from "../../API/axios";
 
 export const fetchItems = createAsyncThunk("items/fetchItems", async () => {
-  const {data} = await API.get("api/item");
+  const {data} = await axios.get("/api/item");
   return data
 });
 

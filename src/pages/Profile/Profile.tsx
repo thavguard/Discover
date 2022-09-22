@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import FormItems from "../../components/FormItems/FormItems";
+import FormItems from "../../components/Profile/FormItems/FormItems";
 import Item from "../../components/Item/Item";
-import Items from "../../components/Items/Items";
-import Title from "../../components/Title/Title";
+import Items from "../../components/Home/Items/Items";
+import Title from "../../components/core-ui/Title/Title";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items.slice";
 import "./Profile.scss";
@@ -10,7 +10,7 @@ import "./Profile.scss";
 type Props = {};
 
 const Profile = (props: Props) => {
-  const { username } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
   const { items } = useAppSelector((state) => state.items);
   const dispatch = useAppDispatch();
 
@@ -21,7 +21,7 @@ const Profile = (props: Props) => {
   return (
     <div className="profile">
       <Title
-        title={`Profile ${username}`}
+        title={`Profile of ${user.username}`}
         text="Here you can create new products"
       />
       <div className="create-item">

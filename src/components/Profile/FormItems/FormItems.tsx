@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import React from "react";
+import { Button } from "../../core-ui/Button/Button";
 import "./FormItems.scss";
 
 type Props = {};
@@ -10,6 +11,7 @@ type Inputs = {
   price: number;
   image: string;
   username: string;
+  address: string;
 };
 
 const FormItems = (props: Props) => {
@@ -20,9 +22,10 @@ const FormItems = (props: Props) => {
       price: 0,
       image: "",
       username: "",
+      address: "",
     } as Inputs,
-    onSubmit: ({ title, description, price, image }: Inputs) => {
-      console.log(title, description, price, image);
+    onSubmit: ({ title, description, price, image, address }: Inputs) => {
+      console.log(title, description, price, image, address);
     },
   });
 
@@ -62,17 +65,25 @@ const FormItems = (props: Props) => {
         <div className="form-items__input">
           <label htmlFor="">Image</label>
           <input
-            type="text"
+            type="file"
             id="image"
             name="image"
             onChange={handleChange}
             value={values.image}
           />
         </div>
+        <div className="form-items__input">
+          <label htmlFor="">address</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            onChange={handleChange}
+            value={values.address}
+          />
+        </div>
         <div className="form-items__btn">
-          <button className="" type="submit">
-            Create item
-          </button>
+          <Button>Add item</Button>
         </div>
       </div>
     </form>
