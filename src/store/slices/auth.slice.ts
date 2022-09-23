@@ -51,11 +51,13 @@ export const login =
   };
 
 export const registration =
-  (email: string, password: string) => async (dispatch: Dispatch) => {
+  (formData: FormData) => async (dispatch: Dispatch) => {
+    console.log(formData);
+
     try {
-      const response = await axios.post<AuthResponse>("/auth/registration", {
-        email,
-        password,
+      const response = await axios.post<AuthResponse>("/auth/registration", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+
       });
       localStorage.setItem("token", response.data.accessToken);
       dispatch(authSlice.actions.setAuth(true));

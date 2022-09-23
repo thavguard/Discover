@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import AppRouter from "./components/AppRouter/AppRouter";
+import AppRouter from "./components/common/AppRouter/AppRouter";
 import Header from "./components/common/Header/Header";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import { checkAuth } from "./store/slices/auth.slice";

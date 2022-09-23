@@ -1,0 +1,21 @@
+.field {
+  margin-bottom: 8px;
+  &:hover {
+    .label {
+      transform: translateY(-2px);
+    }
+  }
+
+  .label {
+    font-size: 12px;
+    color: #4d5656;
+
+    margin-bottom: 4px;
+
+    transition: all 0.2s;
+  }
+
+  &:last-of-type {
+    margin-bottom: 16px;
+  }
+}

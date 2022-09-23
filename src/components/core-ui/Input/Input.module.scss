@@ -1,0 +1,28 @@
+.inputContainer {
+  input {
+    border: 1px solid #273746;
+    border-radius: 4px;
+    padding: 8px 16px;
+
+    max-width: 100%;
+    width: 250px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      font-family: inherit;
+      color: #515a5a;
+      font-size: 12px;
+    }
+
+    &:hover {
+        border-color: #121212;
+    }
+  }
+}

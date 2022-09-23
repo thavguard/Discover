@@ -1,9 +1,10 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useAppSelector } from "../../hooks/hooks";
-import Auth from "../../pages/Auth/Auth";
-import HomePage from "../../pages/Home/HomePage";
-import Profile from "../../pages/Profile/Profile";
+import { useAppSelector } from "../../../hooks/hooks";
+import { Login } from "../../../pages/Auth/Login/LoginPage";
+import { Signup } from "../../../pages/Auth/Signup/SignupPage";
+import HomePage from "../../../pages/Home/HomePage";
+import Profile from "../../../pages/Profile/Profile";
 
 type Props = {};
 
@@ -19,7 +20,8 @@ const AppRouter = (props: Props) => {
   ) : (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="auth" element={<Auth />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/registration" element={<Signup />} />
       <Route path="*" element={<Navigate to={"/"} />} />
     </Routes>
   );

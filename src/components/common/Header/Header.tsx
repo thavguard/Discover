@@ -25,7 +25,7 @@ const Header = (props: Props) => {
           {isAuth ? (
             <Link to={"/profile"}>{user.username}</Link>
           ) : (
-            <Link to={"/auth"}>Sign In</Link>
+            <Link to={"/login"}>Login</Link>
           )}
         </div>
       </div>
