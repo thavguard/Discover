@@ -3,7 +3,7 @@ import "./Footer.scss";
 
 type Props = {};
 
-const Footer = (props: Props) => {
+export const Footer = (props: Props) => {
   return (
     <div className="footer">
       <div id="container">
@@ -14,4 +14,3 @@ const Footer = (props: Props) => {
   );
 };
 
-export default Footer;

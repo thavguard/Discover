@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import FormItems from "../../components/Profile/FormItems/FormItems";
-import Item from "../../components/Item/Item";
-import Items from "../../components/Home/Items/Items";
-import Title from "../../components/core-ui/Title/Title";
+import { FormItems } from "../../components/Profile/FormItems/FormItems";
+import { Item } from "../../components/Item/Item";
+import { Items } from "../../components/Home/Items/Items";
+import { Title } from "../../components/core-ui/Title/Title";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items.slice";
 import "./Profile.scss";
 
 type Props = {};
 
-const Profile = (props: Props) => {
+export const Profile = (props: Props) => {
   const { user } = useAppSelector((state) => state.auth);
   const { items } = useAppSelector((state) => state.items);
   const dispatch = useAppDispatch();
@@ -46,5 +46,3 @@ const Profile = (props: Props) => {
     </div>
   );
 };
-
-export default Profile;

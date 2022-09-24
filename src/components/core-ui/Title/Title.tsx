@@ -6,7 +6,7 @@ type Props = {
   text: string;
 };
 
-const Title = ({ title, text }: Props) => {
+export const Title = ({ title, text }: Props) => {
   return (
     <div className="title">
       <div className="title__welcome">{title}</div>
@@ -15,4 +15,3 @@ const Title = ({ title, text }: Props) => {
   );
 };
 
-export default Title;

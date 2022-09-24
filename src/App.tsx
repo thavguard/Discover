@@ -1,12 +1,12 @@
 import React, { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import AppRouter from "./components/common/AppRouter/AppRouter";
-import Header from "./components/common/Header/Header";
+import { AppRouter } from "./components/common/AppRouter/AppRouter";
+import { Header } from "./components/common/Header/Header";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import { checkAuth } from "./store/slices/auth.slice";
 import "./style/index.scss";
 
-const App: FC = () => {
+export const App: FC = () => {
   const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((state) => state.auth);
 
@@ -27,5 +27,3 @@ const App: FC = () => {
     </div>
   );
 };
-
-export default App;

@@ -14,7 +14,7 @@ type Inputs = {
   address: string;
 };
 
-const FormItems = (props: Props) => {
+export const FormItems = (props: Props) => {
   const { handleSubmit, values, handleChange } = useFormik({
     initialValues: {
       title: "",
@@ -89,5 +89,3 @@ const FormItems = (props: Props) => {
     </form>
   );
 };
-
-export default FormItems;

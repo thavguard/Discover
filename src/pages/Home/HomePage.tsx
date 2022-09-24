@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import Item from "../../components/Item/Item";
-import Items from "../../components/Home/Items/Items";
+import { Item } from "../../components/Item/Item";
+import { Items } from "../../components/Home/Items/Items";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items.slice";
 import "./HomePage.scss";
-import Title from "../../components/core-ui/Title/Title";
+import { Title } from "../../components/core-ui/Title/Title";
 
-const HomePage = () => {
+export const HomePage = () => {
   const { items } = useAppSelector((state) => state.items);
   const dispatch = useAppDispatch();
 
@@ -35,5 +35,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage;

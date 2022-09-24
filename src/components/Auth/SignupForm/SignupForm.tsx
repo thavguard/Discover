@@ -8,6 +8,7 @@ import { ISignupForm } from "../types";
 import styles from "./SignupForm.module.scss";
 import { useAppDispatch } from "../../../hooks/hooks";
 import { registration } from "../../../store/slices/auth.slice";
+import { AuthBox } from "../AuthBox/AuthBox";
 
 type Props = {};
 
@@ -33,7 +34,7 @@ export const SignupForm = (props: Props) => {
   });
 
   return (
-    <div className={styles.form}>
+    <AuthBox>
       <form onSubmit={handleSubmit}>
         <div className={styles.imagePicker}>
           <Field label="avatar">
@@ -74,6 +75,6 @@ export const SignupForm = (props: Props) => {
           <Button fullwidth>Signup</Button>
         </div>
       </form>
-    </div>
+    </AuthBox>
   );
 };

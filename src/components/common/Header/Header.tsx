@@ -7,7 +7,7 @@ import { logout } from "../../../store/slices/auth.slice";
 
 type Props = {};
 
-const Header = (props: Props) => {
+export const Header = (props: Props) => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
@@ -42,4 +42,3 @@ const Header = (props: Props) => {
   );
 };
 
-export default Header;

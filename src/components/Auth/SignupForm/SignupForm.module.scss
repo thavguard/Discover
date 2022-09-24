@@ -1,17 +1,5 @@
-.form {
-  display: flex;
-  justify-content: center;
-
-  border: 1px solid #1c2833;
-  padding: 24px 32px;
-  border-radius: 12px;
-
-  max-width: 350px;
+.fields {
+  margin: 0 auto;
+  max-width: 250px;
   width: 100%;
-
-  .fields {
-    margin: 0 auto;
-    max-width: 250px;
-    width: 100%;
-  }
 }

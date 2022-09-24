@@ -3,7 +3,14 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { ItemType } from "../../types/types";
 import "./Item.scss";
 
-const Item = ({ description, id, image, name, price, rating }: ItemType) => {
+export const Item = ({
+  description,
+  id,
+  image,
+  name,
+  price,
+  rating,
+}: ItemType) => {
   return (
     <div className="item">
       <div className="item__info">
@@ -24,5 +31,3 @@ const Item = ({ description, id, image, name, price, rating }: ItemType) => {
     </div>
   );
 };
-
-export default Item;
