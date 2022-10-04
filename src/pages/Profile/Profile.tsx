@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { FormItems } from "../../components/Profile/FormItems/FormItems";
 import { Item } from "../../components/Item/Item";
 import { Items } from "../../components/Home/Items/Items";
-import { Title } from "../../components/core-ui/Title/Title";
+import { PageTitle } from "../../components/core-ui/PageTitle/PageTitle";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items.slice";
 import "./Profile.scss";
@@ -20,15 +19,15 @@ export const Profile = (props: Props) => {
 
   return (
     <div className="profile">
-      <Title
+      <PageTitle
         title={`Profile of ${user.username}`}
         text="Here you can create new products"
       />
-      <div className="create-item">
+      {/* <div className="create-item">
         <div className="create-item__form">
           <FormItems />
         </div>
-      </div>
+      </div> */}
       <div className="your-ads">Your ads</div>
       <Items>
         {items.map((e) => (

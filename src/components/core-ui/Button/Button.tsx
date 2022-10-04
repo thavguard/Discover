@@ -5,6 +5,7 @@ type Props = {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   fullwidth?: boolean;
+  variant?: "withoutBorderRadius";
   children: React.ReactNode;
 };
 
@@ -12,6 +13,7 @@ export const Button = ({
   onClick,
   type = "submit",
   fullwidth = false,
+  variant,
   children,
 }: Props) => {
   return (
@@ -20,6 +22,7 @@ export const Button = ({
       onClick={onClick}
       type={type}
       data-fullwidth={fullwidth}
+      data-variant={variant}
     >
       {children}
     </button>

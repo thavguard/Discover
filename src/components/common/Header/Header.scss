@@ -8,6 +8,8 @@
 .navbar {
   display: flex;
   &__link {
+    display: flex;
+    align-items: center;
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 500;

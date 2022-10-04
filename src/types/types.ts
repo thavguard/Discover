@@ -1,4 +1,4 @@
-export interface ItemType {
+export interface IItem {
   id: number;
   name: string;
   description: string;
@@ -6,5 +6,12 @@ export interface ItemType {
   price: number;
   rating: number;
 }
+
+export interface IItemType {
+  id: number
+  name: string
+}
+
+
 
 

@@ -4,3 +4,18 @@ export interface IRegistration {
   username: string;
   avatar: string;
 }
+
+export interface IItemInfo {
+  title: string;
+  description: string;
+}
+
+export interface ICreateItem {
+  image: File;
+  name: string;
+  description: string;
+  price: number;
+  itemTypeId: number;
+  info: IItemInfo[];
+  address: string;
+}

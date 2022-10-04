@@ -1,8 +1,8 @@
 import { useFormik } from "formik";
-import React from "react";
+import React, { FC } from "react";
 import { Button } from "../../core-ui/Button/Button";
 import { Field } from "../../core-ui/Field/Field";
-import { AvatarPicker } from "../../core-ui/AvatarPicker/AvatarPicker";
+import { AvatarPicker } from "../../Profile/AvatarPicker/AvatarPicker";
 import { Input } from "../../core-ui/Input/Input";
 import { ISignupForm } from "../types";
 import styles from "./SignupForm.module.scss";
@@ -12,7 +12,7 @@ import { AuthBox } from "../AuthBox/AuthBox";
 
 type Props = {};
 
-export const SignupForm = (props: Props) => {
+export const SignupForm: FC = (props: Props) => {
   const dispatch = useAppDispatch();
 
   const { handleChange, values, handleSubmit, setFieldValue } = useFormik({
@@ -23,6 +23,8 @@ export const SignupForm = (props: Props) => {
       avatar: "",
     } as ISignupForm,
     onSubmit: ({ email, password, username, avatar }) => {
+      console.log({ avatar });
+
       const formData = new FormData();
       formData.append("email", email);
       formData.append("password", password);

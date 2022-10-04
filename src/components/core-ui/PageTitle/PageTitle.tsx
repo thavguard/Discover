@@ -1,12 +1,12 @@
 import React from "react";
-import "./Title.scss";
+import "./PageTitle.scss";
 
 type Props = {
   title: string;
   text: string;
 };
 
-export const Title = ({ title, text }: Props) => {
+export const PageTitle = ({ title, text }: Props) => {
   return (
     <div className="title">
       <div className="title__welcome">{title}</div>
@@ -14,4 +14,3 @@ export const Title = ({ title, text }: Props) => {
     </div>
   );
 };
-

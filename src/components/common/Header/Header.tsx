@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import "./Header.scss";
 import cartImg from "../../assets/images/cart.png";
 import { logout } from "../../../store/slices/auth.slice";
+import { Button } from "../../core-ui/Button/Button";
 
 type Props = {};
 
@@ -29,7 +30,14 @@ export const Header = (props: Props) => {
           )}
         </div>
       </div>
-      <div>
+      <div className="navbar">
+        <div className="navbar__link">
+          {isAuth && (
+            <Button variant="withoutBorderRadius">
+             <Link to={'/addItem'}> Add item</Link>
+            </Button>
+          )}
+        </div>
         <div className="navbar__link">
           {isAuth && (
             <div className={"navbar__link--logout"} onClick={onLogout}>
@@ -41,4 +49,3 @@ export const Header = (props: Props) => {
     </div>
   );
 };
-

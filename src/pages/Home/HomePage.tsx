@@ -4,7 +4,7 @@ import { Items } from "../../components/Home/Items/Items";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items.slice";
 import "./HomePage.scss";
-import { Title } from "../../components/core-ui/Title/Title";
+import { PageTitle } from "../../components/core-ui/PageTitle/PageTitle";
 
 export const HomePage = () => {
   const { items } = useAppSelector((state) => state.items);
@@ -15,7 +15,7 @@ export const HomePage = () => {
   }, []);
   return (
     <div className="Home">
-      <Title
+      <PageTitle
         title="Welcome to Main Page"
         text="Here you can see our products"
       />

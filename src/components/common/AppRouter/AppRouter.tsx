@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAppSelector } from "../../../hooks/hooks";
 import { Loader } from "../Loader/Loader";
@@ -32,6 +32,12 @@ export const AppRouter = (props: Props) => {
     }))
   );
 
+  const AddItem = React.lazy(() =>
+    import("../../../pages/Profile/AddItem/AddItem").then((module) => ({
+      default: module.AdddItem,
+    }))
+  );
+
   return !!isAuth ? (
     <Routes>
       <Route
@@ -43,10 +49,18 @@ export const AppRouter = (props: Props) => {
         }
       />
       <Route
-        path="/profile"
+        path="profile"
         element={
           <Suspense fallback={<Loader />}>
             <Profile />
+          </Suspense>
+        }
+      />
+      <Route
+        path="addItem"
+        element={
+          <Suspense fallback={<Loader />}>
+            <AddItem />
           </Suspense>
         }
       />
@@ -63,7 +77,7 @@ export const AppRouter = (props: Props) => {
         }
       />
       <Route
-        path="/login"
+        path="login"
         element={
           <Suspense fallback={<Loader />}>
             <Login />
@@ -71,7 +85,7 @@ export const AppRouter = (props: Props) => {
         }
       />
       <Route
-        path="/registration"
+        path="registration"
         element={
           <Suspense fallback={<Loader />}>
             <Signup />

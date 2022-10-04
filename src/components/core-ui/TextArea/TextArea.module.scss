@@ -1,8 +1,6 @@
-@import "src/style/variables";
-
-.inputContainer {
-  input {
-    border: 1px solid $primary;
+.textareaContainer {
+  textarea {
+    border: 1px solid #273746;
     border-radius: 4px;
     padding: 12px 14px;
 
@@ -13,6 +11,8 @@
 
     font-size: 14px;
 
+    resize: none;
+
     &:focus {
       outline: none;
     }
@@ -20,11 +20,11 @@
     &::placeholder {
       font-family: inherit;
       color: #3f4049;
-      font-size: 13px;
+      font-size: 14px;
     }
 
     &:hover {
-      border-color: $gray;
+      border-color: #121212;
     }
   }
 }

@@ -1,14 +1,14 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, HTMLAttributes, FocusEvent } from "react";
 import styles from "./Input.module.scss";
 
-type Props = {
+interface Props extends HTMLAttributes<HTMLInputElement> {
   type?: string;
   name: string;
   id?: string;
   placeholder?: string;
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
-  onBlur?: () => void;
-};
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+}
 
 export const Input = ({
   type = "text",
@@ -17,6 +17,7 @@ export const Input = ({
   name,
   placeholder,
   id,
+  ...props
 }: Props) => {
   return (
     <div className={styles.inputContainer}>
@@ -27,6 +28,7 @@ export const Input = ({
         name={name}
         placeholder={placeholder}
         id={id}
+        {...props}
       />
     </div>
   );

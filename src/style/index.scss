@@ -13,6 +13,8 @@ body {
   font-family: "Montserrat", sans-serif;
 
   text-transform: lowercase;
+
+  background: #fff;
 }
 
 a {
@@ -27,7 +29,8 @@ img {
 }
 
 #container {
-  width: 1230px;
+  max-width: 1230px;
+  width: 100%;
   padding: 0 15px;
   margin: 0 auto;
 }

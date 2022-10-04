@@ -29,6 +29,11 @@
   &:active {
     background: #121212;
     transform: scale(0.98);
+    // transform: translate(2px, 1px);
+  }
+
+  &[data-variant="withoutBorderRadius"] {
+    border-radius: 0;
   }
 
   &[data-fullwidth="true"] {

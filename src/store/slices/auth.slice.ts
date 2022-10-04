@@ -5,12 +5,10 @@ import { API_URL, axios } from "./../../API/axios";
 import axiosLib from "axios";
 
 import {
-  createAsyncThunk,
   createSlice,
   Dispatch,
   PayloadAction,
 } from "@reduxjs/toolkit";
-import { ItemType } from "../../types/types";
 
 const initialState: AuthSlice = {
   user: {} as IUser,
@@ -55,10 +53,13 @@ export const registration =
     console.log(formData);
 
     try {
-      const response = await axios.post<AuthResponse>("/auth/registration", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-
-      });
+      const response = await axios.post<AuthResponse>(
+        "/auth/registration",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       localStorage.setItem("token", response.data.accessToken);
       dispatch(authSlice.actions.setAuth(true));
       dispatch(authSlice.actions.setUser(response.data.user));
@@ -69,7 +70,7 @@ export const registration =
 
 export const logout = () => async (dispatch: Dispatch) => {
   try {
-    const response = await axios.post<void>("/auth/logout");
+    axios.post<void>("/auth/logout");
 
     localStorage.removeItem("token");
     dispatch(authSlice.actions.setAuth(false));
