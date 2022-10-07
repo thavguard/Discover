@@ -29,11 +29,9 @@ const FormItemsShema = Yup.object().shape({
     .min(5, "too short!")
     .max(30, "too long!")
     .required("address is required"),
-  image: Yup.object({
-    size: Yup.number().max(1),
-  }).required("image is required"),
+  image: Yup.object().required("image is required"),
   price: Yup.number()
-    .min(10, "too short!")
+    .min(10, "min 10!")
     .max(999999999, "too long!")
     .required("price is required"),
   info: Yup.array(),
@@ -128,6 +126,9 @@ export const FormItems = (props: Props) => {
               setFieldValue("image", file);
             }}
           />
+          {!!errors.image && !!touched.image && (
+            <Invalid>{JSON.stringify(errors.image, null, 2)}</Invalid>
+          )}
         </div>
       </Field>
       <Field label="name">
@@ -181,7 +182,7 @@ export const FormItems = (props: Props) => {
           <Invalid>{errors.description}</Invalid>
         )}
       </Field>
-      <Button>create</Button>
+      <Button disabled={!isValid}>create</Button>
     </form>
   );
 };
