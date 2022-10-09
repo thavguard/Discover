@@ -4,4 +4,5 @@ export interface AuthSlice {
   user: IUser;
   isAuth: boolean;
   isLoading: boolean;
+  isInitDone: boolean
 }

@@ -10,6 +10,7 @@ const initialState: AuthSlice = {
   user: {} as IUser,
   isAuth: false,
   isLoading: false,
+  isInitDone: false,
 };
 
 export const authSlice = createSlice({
@@ -26,6 +27,9 @@ export const authSlice = createSlice({
     setUser(state, action: PayloadAction<IUser>) {
       state.user = action.payload;
     },
+    setInitDone(state, action: PayloadAction<boolean>) {
+      state.isInitDone = action.payload;
+    },
   },
 });
 
@@ -37,10 +41,12 @@ export const login =
         password,
       });
       localStorage.setItem("token", response.data.accessToken);
-      dispatch(authSlice.actions.setAuth(true));
       dispatch(authSlice.actions.setUser(response.data.user));
+      dispatch(authSlice.actions.setAuth(true));
     } catch (e) {
       console.log(e);
+    } finally {
+      dispatch(authSlice.actions.setInitDone(true));
     }
   };
 
@@ -57,10 +63,12 @@ export const registration =
         }
       );
       localStorage.setItem("token", response.data.accessToken);
-      dispatch(authSlice.actions.setAuth(true));
       dispatch(authSlice.actions.setUser(response.data.user));
+      dispatch(authSlice.actions.setAuth(true));
     } catch (e) {
       console.log(e);
+    } finally {
+      dispatch(authSlice.actions.setInitDone(true));
     }
   };
 
@@ -73,6 +81,8 @@ export const logout = () => async (dispatch: Dispatch) => {
     dispatch(authSlice.actions.setUser({} as IUser));
   } catch (e) {
     console.log(e);
+  } finally {
+    dispatch(authSlice.actions.setInitDone(false));
   }
 };
 
@@ -84,11 +94,12 @@ export const checkAuth = () => async (dispatch: Dispatch) => {
       { withCredentials: true }
     );
     localStorage.setItem("token", response.data.accessToken);
-    dispatch(authSlice.actions.setAuth(true));
     dispatch(authSlice.actions.setUser(response.data.user));
+    dispatch(authSlice.actions.setAuth(true));
   } catch (error) {
     console.log(error);
   } finally {
     dispatch(authSlice.actions.setLoading(false));
+    dispatch(authSlice.actions.setInitDone(true));
   }
 };

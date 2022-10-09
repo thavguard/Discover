@@ -6,7 +6,9 @@ import { Loader } from "../Loader/Loader";
 type Props = {};
 
 export const AppRouter = (props: Props) => {
-  const { isAuth } = useAppSelector((state) => state.auth);
+  const { isAuth, isInitDone } = useAppSelector((state) => state.auth);
+
+  if (!isInitDone) return null;
 
   const Profile = React.lazy(() =>
     import("../../../pages/Profile/Profile").then((module) => ({
@@ -37,7 +39,6 @@ export const AppRouter = (props: Props) => {
       default: module.AdddItem,
     }))
   );
-
 
   return !!isAuth ? (
     <Routes>
