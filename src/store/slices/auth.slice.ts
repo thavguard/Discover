@@ -4,11 +4,7 @@ import { AuthResponse } from "./../../types/response/AuthResponse";
 import { API_URL, axios } from "./../../API/axios";
 import axiosLib from "axios";
 
-import {
-  createSlice,
-  Dispatch,
-  PayloadAction,
-} from "@reduxjs/toolkit";
+import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: AuthSlice = {
   user: {} as IUser,

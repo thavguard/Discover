@@ -14,8 +14,8 @@ export interface ICreateItem {
   image: File;
   name: string;
   description: string;
-  price: number;
-  itemTypeId: number;
-  info: IItemInfo[];
+  price: number | string;
+  itemTypeId: number | string;
+  info: IItemInfo[] | string;
   address: string;
 }

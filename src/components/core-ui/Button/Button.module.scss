@@ -34,7 +34,7 @@
     // transform: translate(2px, 1px);
   }
 
-  &[data-variant="withoutBorderRadius"] {
+  &[data-variant="br-0"] {
     border-radius: 0;
   }
 

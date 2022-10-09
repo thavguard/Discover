@@ -15,6 +15,7 @@ import { createItem, fetchItemTypes } from "../../../store/slices/items.slice";
 import { Loader } from "../../common/Loader/Loader";
 import * as Yup from "yup";
 import { Invalid } from "../../core-ui/Invalid/Invalid";
+import { createFormData } from "../../../utils/createFormData";
 
 const FormItemsShema = Yup.object().shape({
   name: Yup.string()
@@ -29,7 +30,7 @@ const FormItemsShema = Yup.object().shape({
     .min(5, "too short!")
     .max(30, "too long!")
     .required("address is required"),
-  image: Yup.object().required("image is required"),
+  image: Yup.mixed().required("image is required"),
   price: Yup.number()
     .min(10, "min 10!")
     .max(999999999, "too long!")
@@ -82,18 +83,18 @@ export const FormItems = (props: Props) => {
         name,
         price,
       });
-      const formData = new FormData();
-      formData.append("image", image);
-      formData.append("name", name);
-      formData.append("description", description);
-      formData.append("price", price.toString());
-      // formData.append("itemTypeId", itemTypeId.toString());
-      formData.append("itemTypeId", "1");
-      formData.append(
-        "info",
-        JSON.stringify([{ title: "Диагональ экрана", description: "6.67" }])
-      );
-      formData.append("address", address);
+
+      const formData = createFormData<ICreateItem>({
+        image,
+        name,
+        description,
+        price: price.toString(),
+        itemTypeId: itemTypeId.toString(),
+        info: JSON.stringify([
+          { title: "Диагональ экрана", description: "6.67" },
+        ]),
+        address,
+      });
 
       dispatch(createItem(formData));
 
@@ -110,12 +111,12 @@ export const FormItems = (props: Props) => {
   });
 
   useEffect(() => {
-    dispatch(fetchItemTypes());
+    // dispatch(fetchItemTypes());
   }, []);
 
-  if (!itemTypes.length) {
-    return <Loader />;
-  }
+  // if (!itemTypes.length) {
+  //   return <Loader />;
+  // }
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
@@ -142,7 +143,11 @@ export const FormItems = (props: Props) => {
         {!!errors.name && !!touched.name && <Invalid>{errors.name}</Invalid>}
       </Field>
       <Field label="type">
-        <SelectType options={itemTypes} />
+        <SelectType
+          options={itemTypes}
+          onChange={(e) => setFieldValue("itemTypeId", e?.value)}
+          onBlur={handleBlur}
+        />
         {!!errors.itemTypeId && !!touched.itemTypeId && (
           <Invalid>{errors.itemTypeId}</Invalid>
         )}
@@ -182,7 +187,7 @@ export const FormItems = (props: Props) => {
           <Invalid>{errors.description}</Invalid>
         )}
       </Field>
-      <Button disabled={!isValid}>create</Button>
+      <Button>create</Button>
     </form>
   );
 };

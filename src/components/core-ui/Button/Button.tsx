@@ -6,7 +6,7 @@ type Props = {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   fullwidth?: boolean;
-  variant?: "withoutBorderRadius";
+  variant?: "br-0";
   disabled?: boolean;
   children: React.ReactNode;
 };

@@ -5,6 +5,7 @@ import { PageTitle } from "../../components/core-ui/PageTitle/PageTitle";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items.slice";
 import "./Profile.scss";
+import { Loader } from "../../components/common/Loader/Loader";
 
 type Props = {};
 
@@ -16,6 +17,8 @@ export const Profile = (props: Props) => {
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
+
+
 
   return (
     <div className="profile">

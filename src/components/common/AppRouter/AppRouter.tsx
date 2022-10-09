@@ -38,6 +38,7 @@ export const AppRouter = (props: Props) => {
     }))
   );
 
+
   return !!isAuth ? (
     <Routes>
       <Route

@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items.slice";
 import "./HomePage.scss";
 import { PageTitle } from "../../components/core-ui/PageTitle/PageTitle";
+import { Loader } from "../../components/common/Loader/Loader";
 
 export const HomePage = () => {
   const { items } = useAppSelector((state) => state.items);
@@ -13,6 +14,8 @@ export const HomePage = () => {
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
+
+
   return (
     <div className="Home">
       <PageTitle
@@ -20,7 +23,8 @@ export const HomePage = () => {
         text="Here you can see our products"
       />
       <Items>
-        {items.map((e) => (
+        
+        {!!items.length ? items.map((e) => (
           <Item
             key={e.id}
             name={e.name}
@@ -30,7 +34,7 @@ export const HomePage = () => {
             id={e.id}
             image={e.image}
           />
-        ))}
+        )) : ''}
       </Items>
     </div>
   );
