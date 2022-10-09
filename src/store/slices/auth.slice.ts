@@ -82,7 +82,7 @@ export const logout = () => async (dispatch: Dispatch) => {
   } catch (e) {
     console.log(e);
   } finally {
-    dispatch(authSlice.actions.setInitDone(false));
+    dispatch(authSlice.actions.setInitDone(true));
   }
 };
 

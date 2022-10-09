@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import "./Header.scss";
 import cartImg from "../../assets/images/cart.png";
@@ -11,9 +11,11 @@ type Props = {};
 export const Header = (props: Props) => {
   const { isAuth, user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onLogout = () => {
     dispatch(logout());
+    navigate("./login");
   };
 
   return (

@@ -12,9 +12,7 @@ export const App: FC = () => {
   const { isLoading } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
       dispatch(checkAuth());
-    }
   }, []);
 
   console.log({ isLoading });
