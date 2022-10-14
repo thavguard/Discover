@@ -36,7 +36,7 @@ export const Header = (props: Props) => {
         <div className="navbar__link">
           {isAuth && (
             <Link to={"/addItem"}>
-              <Button variant="br-0">Add item</Button>
+              <Button br="br-0">Add item</Button>
             </Link>
           )}
         </div>

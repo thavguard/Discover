@@ -17,7 +17,7 @@ export const TextArea = ({
   name,
   placeholder,
   id,
-  rows = 6,
+  rows = 10,
 }: Props) => {
   return (
     <div className={styles.textareaContainer}>

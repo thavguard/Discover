@@ -1,6 +1,7 @@
 @import "src/style/variables.scss";
 
 .button {
+  display: block;
   max-width: 200px;
   width: 100%;
 
@@ -34,8 +35,16 @@
     // transform: translate(2px, 1px);
   }
 
-  &[data-variant="br-0"] {
+  &[data-br="br-0"] {
     border-radius: 0;
+  }
+
+  &[data-br="br-1"] {
+    border-radius: 4px;
+  }
+
+  &[data-size="big"] {
+    padding: 18px 20px;
   }
 
   &[data-fullwidth="true"] {
@@ -51,6 +60,10 @@
 
       animation: 0.2s 1 normal errorBtn;
     }
+  }
+
+  .children {
+    display: block;
   }
 }
 

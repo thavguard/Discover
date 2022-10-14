@@ -40,6 +40,12 @@ export const AppRouter = (props: Props) => {
     }))
   );
 
+  const ItemPage = React.lazy(() =>
+    import("../../../pages/Item/ItemPage").then((module) => ({
+      default: module.ItemPage,
+    }))
+  );
+
   return !!isAuth ? (
     <Routes>
       <Route
@@ -63,6 +69,14 @@ export const AppRouter = (props: Props) => {
         element={
           <Suspense fallback={<Loader />}>
             <AddItem />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/item/:id"
+        element={
+          <Suspense fallback={<Loader />}>
+            <ItemPage />
           </Suspense>
         }
       />
@@ -91,6 +105,14 @@ export const AppRouter = (props: Props) => {
         element={
           <Suspense fallback={<Loader />}>
             <Signup />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/item/:id"
+        element={
+          <Suspense fallback={<Loader />}>
+            <ItemPage />
           </Suspense>
         }
       />

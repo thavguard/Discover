@@ -111,12 +111,12 @@ export const FormItems = (props: Props) => {
   });
 
   useEffect(() => {
-    // dispatch(fetchItemTypes());
+    dispatch(fetchItemTypes());
   }, []);
 
-  // if (!itemTypes.length) {
-  //   return <Loader />;
-  // }
+  if (!itemTypes.length) {
+    return <Loader />;
+  }
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
