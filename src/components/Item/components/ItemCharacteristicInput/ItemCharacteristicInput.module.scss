@@ -1,0 +1,21 @@
+@import '../../../../style/variables';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+
+  label {
+    max-width: 256px;
+    margin-right: 8px;
+  }
+
+  .input {
+    max-width: 256px;
+    width: 100%;
+  }
+}

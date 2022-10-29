@@ -2,8 +2,9 @@ import React, { HTMLAttributes, FocusEvent } from "react";
 import styles from "./TextArea.module.scss";
 
 interface Props extends HTMLAttributes<HTMLTextAreaElement> {
-  type?: string;
+  value: string;
   name: string;
+  type?: string;
   id?: string;
   placeholder?: string;
   rows?: number;
@@ -17,7 +18,9 @@ export const TextArea = ({
   name,
   placeholder,
   id,
+  value,
   rows = 10,
+  ...props
 }: Props) => {
   return (
     <div className={styles.textareaContainer}>
@@ -28,6 +31,8 @@ export const TextArea = ({
         placeholder={placeholder}
         id={id}
         rows={rows}
+        value={value}
+        {...props}
       />
     </div>
   );

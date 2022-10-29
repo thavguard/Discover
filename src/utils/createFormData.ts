@@ -1,9 +1,9 @@
 export const createFormData = <T>(args: T) => {
-  const formData = new FormData();
+    const formData = new FormData();
 
-  for (var key in args) {
-    formData.append(key, args[key] as any);
-  }
+    for (let key in args) {
+        formData.append(key, args[key] as any);
+    }
 
-  return formData;
+    return formData;
 };

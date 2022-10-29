@@ -5,3 +5,28 @@ $white: #ffffff;
 $primary: #212121;
 $secondary: #404040;
 $gray: #5e5e5e;
+
+@mixin duo() {
+  display: flex;
+
+  & > * {
+    &:first-child {
+      margin-right: 4px;
+      flex-grow: 2;
+    }
+
+    &:last-child {
+      margin-left: 4px;
+      flex-grow: 2;
+    }
+  }
+}
+
+@mixin center($pos: absolute) {
+  position: $pos;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+

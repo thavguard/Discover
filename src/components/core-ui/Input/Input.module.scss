@@ -6,8 +6,8 @@
     border-radius: 4px;
     padding: 12px 14px;
 
-    max-width: 100%;
-    width: 520px;
+    // max-width: 520px;
+    width: 100%;
 
     font-family: inherit;
 
@@ -19,8 +19,9 @@
 
     &::placeholder {
       font-family: inherit;
-      color: #3f4049;
+      color: $gray;
       font-size: 13px;
+      text-transform: lowercase;
     }
 
     &:hover {

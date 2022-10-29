@@ -2,9 +2,10 @@ import React, { ChangeEvent, HTMLAttributes, FocusEvent } from "react";
 import styles from "./Input.module.scss";
 
 interface Props extends HTMLAttributes<HTMLInputElement> {
-  type?: string;
-  name: string;
+  value: string;
+  name?: string;
   id?: string;
+  type?: string;
   placeholder?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
@@ -17,6 +18,7 @@ export const Input = ({
   name,
   placeholder,
   id,
+  value,
   ...props
 }: Props) => {
   return (
@@ -28,6 +30,7 @@ export const Input = ({
         name={name}
         placeholder={placeholder}
         id={id}
+        value={value}
         {...props}
       />
     </div>

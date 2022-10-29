@@ -1,0 +1,17 @@
+@import "../../../../style/variables";
+
+.container {
+  max-width: 520px;
+
+
+  .swiper {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  .duo {
+    @include duo();
+  }
+
+}
+

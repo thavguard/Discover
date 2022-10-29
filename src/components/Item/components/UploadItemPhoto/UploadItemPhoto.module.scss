@@ -1,0 +1,37 @@
+@import "../../../../style/variables";
+
+$img_height: 180px;
+
+.uploader {
+  display: block;
+
+  height: $img_height;
+
+  cursor: pointer;
+
+  .plus {
+    height: $img_height;
+    background: $white;
+
+    border: 2px solid $primary;
+
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 50px;
+    }
+  }
+
+  .previewImg {
+    img {
+      object-fit: cover;
+      height: $img_height;
+
+      border-radius: 8px;
+    }
+  }
+}

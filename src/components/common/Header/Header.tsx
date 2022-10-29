@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import "./Header.scss";
 import cartImg from "../../assets/images/cart.png";
-import { logout } from "../../../store/slices/auth.slice";
+import { logout } from "../../../store/slices/auth/auth.slice";
 import { Button } from "../../core-ui/Button/Button";
 
 type Props = {};

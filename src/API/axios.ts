@@ -1,6 +1,6 @@
-import { AuthResponse } from "./../types/response/AuthResponse";
 import axiosLib, { AxiosRequestConfig } from "axios";
 import { config } from "process";
+import { AuthResponse } from "../store/slices/auth/types";
 
 export const API_URL = "http://localhost:5050";
 
