@@ -34,7 +34,7 @@ export const Item = forwardRef<HTMLDivElement, IItem>((
                     <div className={styles.item__name}>{name}</div>
                     <div className={styles.item__desc}>{description}</div>
                     <div className={styles.item__img}>
-                        <img src={`http://localhost:5050/api/item/${id}/img`} alt={name}/>
+                        <img src={`${process.env.REACT_APP_API_URL}/api/item/${id}/img`} alt={name}/>
                     </div>
                 </div>
                 <div className={styles.item__btns}>
