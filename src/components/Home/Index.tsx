@@ -6,9 +6,19 @@ import styles from "./Index.module.scss";
 import { PageTitle } from "../core-ui/PageTitle/PageTitle";
 import Filter from "./components/Filter/Filter";
 import { fetchHomeItems, homeSlice } from "./slice/home.slice";
+import { useMediaQuery } from "usehooks-ts";
+import filterIcon from '../../assets/icons/filter.png'
+
 
 export const Index = () => {
         const { items, itemsLoading, totalPages, filter, page } = useAppSelector((state) => state.home);
+
+        const isMobile = useMediaQuery('(max-width: 600px)')
+        const [showFilter, setShowFilter] = useState(!isMobile)
+
+        useEffect(() => {
+            setShowFilter(!isMobile)
+        }, [isMobile])
 
         const dispatch = useAppDispatch()
         const lastItem = createRef<HTMLDivElement>()
@@ -44,9 +54,14 @@ export const Index = () => {
                     title="Welcome to Main Page"
                     text="Here you can see our products"
                 />
-                <div className="">
+                {isMobile && <div className={styles.filterIcon} onClick={() => setShowFilter(!showFilter)}>
+                    <img src={filterIcon} alt=""/>
+                </div>}
+
+                {showFilter && <div className={styles.filter}>
                     <Filter/>
-                </div>
+                </div>}
+
                 <div className={styles.items}>
                     {!!items.length
                         ? items.map((item, index) => {

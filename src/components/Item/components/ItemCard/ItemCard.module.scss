@@ -1,7 +1,7 @@
 .item {
   width: 250px;
   cursor: pointer;
-  
+
   &__info {
   }
 
@@ -80,6 +80,18 @@
 
     &::before {
       width: 100%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .item {
+    width: 170px;
+
+    &__img {
+      img {
+        //object-fit: contain;
+      }
     }
   }
 }

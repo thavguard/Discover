@@ -1,11 +1,11 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import styles from "./AvatarPicker.module.scss";
 
 type Props = {
     onChange: (e: any) => void;
 };
 
-export const AvatarPicker = ({onChange}: Props) => {
+export const AvatarPicker = ({ onChange }: Props) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [file, setFile] = useState<any>();
     const [imgPreviewUrl, setImgPreviewUrl] = useState<any>("");
@@ -43,7 +43,7 @@ export const AvatarPicker = ({onChange}: Props) => {
                 }}
             />
             <div className={styles.picker} onClick={() => inputRef.current?.click()}>
-                <img src={imgPreviewUrl} alt=""/>
+                {imgPreviewUrl && <img src={imgPreviewUrl} alt=""/>}
             </div>
             {file ? (
                 <div className={styles.remove} onClick={onRemoveImg}>

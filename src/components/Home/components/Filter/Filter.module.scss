@@ -1,5 +1,9 @@
 @import "./../../../../style/variables";
 
+.container {
+
+}
+
 .title {
   font-size: 18px;
 
@@ -54,4 +58,24 @@
 
 .name, .itemTypeId, .creator, .selectPrice {
   margin-right: 12px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    position: absolute;
+    background: #fff;
+    z-index: 10;
+  }
+  .filter {
+    display: block;
+
+    padding: 16px 16px 16px 0;
+  }
+
+  .name, .itemTypeId, .creator, .selectPrice, .selectDate {
+    max-width: 100%;
+
+    margin: 0 0 8px 0;
+  }
+
 }

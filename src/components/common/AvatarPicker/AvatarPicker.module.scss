@@ -8,8 +8,7 @@
   .picker {
     cursor: pointer;
 
-    max-width: 150px;
-    width: 100%;
+    width: 150px;
     height: 150px;
     border-radius: 50%;
     background: #121212;
@@ -20,7 +19,9 @@
       border-radius: 50%;
       max-width: 150px;
       width: 100%;
-      height: auto;
+      height: 150px;
+
+      object-fit: cover;
     }
   }
 

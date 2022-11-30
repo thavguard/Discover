@@ -10,12 +10,13 @@ import { Option } from "../../../core-ui/Select/types";
 import Calendar from 'react-calendar';
 import '../../../core-ui/Calendar/Calendar.scss'
 import { Button } from "../../../core-ui/Button/Button";
-import { useOnClickOutside } from "usehooks-ts";
+import { useMediaQuery, useOnClickOutside } from "usehooks-ts";
 
 
 const Filter = () => {
     const dispatch = useAppDispatch()
     const ref = useRef<HTMLDivElement>(null)
+    const isMobile = useMediaQuery("(max-width: 600px)")
 
     const filter = useAppSelector(state => state.home.filter)
     const { itemTypes, itemCharacteristics } = useAppSelector(
@@ -77,7 +78,7 @@ const Filter = () => {
 
 
     return (
-        <div>
+        <div className={styles.container}>
             <div className={styles.title}>Filter</div>
             <div className={styles.filter}>
                 <div className={styles.name}>
@@ -108,7 +109,8 @@ const Filter = () => {
                 </div>
                 <div className={styles.selectDate} ref={ref}>
                     <div className={styles.label}>by date</div>
-                    <Button onClick={() => setShowCalendar(!showCalendar)} br={'br-0'}>Select date</Button>
+                    <Button onClick={() => setShowCalendar(!showCalendar)} br={'br-0'} fullwidth={isMobile}>Select
+                        date</Button>
                     {showCalendar &&
                         <div className={styles.calendar}>
                             <Calendar
