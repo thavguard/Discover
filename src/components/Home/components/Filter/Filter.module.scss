@@ -1,0 +1,57 @@
+@import "./../../../../style/variables";
+
+.title {
+  font-size: 18px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  margin-bottom: 8px;
+}
+
+.filter {
+  display: flex;
+}
+
+.label {
+  margin-bottom: 6px;
+  margin-bottom: 4px;
+}
+
+.name {
+  max-width: 300px;
+  width: 100%;
+
+  margin-right: 12px;
+}
+
+.itemTypeId {
+  max-width: 300px;
+  width: 100%;
+}
+
+.creator {
+  max-width: 300px;
+  width: 100%;
+}
+
+.selectPrice {
+  max-width: 150px;
+}
+
+.price {
+  @include duo();
+}
+
+.selectDate {
+  position: relative;
+}
+
+.calendar {
+  position: absolute;
+}
+
+.name, .itemTypeId, .creator, .selectPrice {
+  margin-right: 12px;
+}

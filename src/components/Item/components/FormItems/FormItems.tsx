@@ -101,6 +101,7 @@ export const FormItems = ({}: Props) => {
                 itemTypeId: values.itemTypeId.toString(),
                 address: JSON.stringify(values.address),
                 info: JSON.stringify(values.info),
+                wasCreated: Date.now()
             });
 
             const item = await dispatch(createItem(formData));

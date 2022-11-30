@@ -1,4 +1,4 @@
-import { IItem, IItemType } from "../../../components/Item/types";
+import { IItem, IItemType } from "../components/Item/types";
 
 export interface ItemsState {
     items: IItem[];
@@ -13,7 +13,7 @@ export interface ItemCharacteristic {
     id: number;
 }
 
-// export interface ItemCharactetisticInput {
+// export interface ItemCharacteristicInput {
 //     title: string;
 //     description: string;
 // }

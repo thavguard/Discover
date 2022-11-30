@@ -1,7 +1,7 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 import { axios } from "../../../API/axios";
-import { ItemCharacteristic, ItemsState } from "./types";
 import { IItem, IItemType } from "../../../components/Item/types";
+import { ItemCharacteristic, ItemsState } from "../../types";
 
 const initialState: ItemsState = {
     items: [],

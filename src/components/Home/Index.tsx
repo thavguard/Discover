@@ -1,17 +1,14 @@
-import React, { createRef, useEffect, useRef, useState } from "react";
+import React, { createRef, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Item } from "../Item/components/ItemCard/Item";
 import { Grid } from "./components/Grid/Grid";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { fetchItems } from "../../store/slices/items/items.slice";
 import styles from "./Index.module.scss";
 import { PageTitle } from "../core-ui/PageTitle/PageTitle";
-import { Loader } from "../common/Loader/Loader";
 import Filter from "./components/Filter/Filter";
+import { fetchHomeItems, homeSlice } from "./slice/home.slice";
 
 export const Index = () => {
-        const { items, itemsLoading } = useAppSelector((state) => state.items);
-        const [limit, setLimit] = useState(24)
-
+        const { items, itemsLoading, totalPages, filter, page } = useAppSelector((state) => state.home);
 
         const dispatch = useAppDispatch()
         const lastItem = createRef<HTMLDivElement>()
@@ -19,13 +16,13 @@ export const Index = () => {
 
 
         useEffect(() => {
-            dispatch(fetchItems(limit));
-        }, [limit])
+            dispatch(fetchHomeItems({ page, filter })); // TODO: пофиксить двойной запрос при загрузке страницы
+        }, [page, filter])
 
 
         const actionInSight: IntersectionObserverCallback = (entries) => {
-            if (entries[0].isIntersecting && !itemsLoading) {
-                setLimit(prev => prev + 24)
+            if (entries[0].isIntersecting && !itemsLoading && page < totalPages) {
+                dispatch(homeSlice.actions.setPage(page + 1))
             }
         };
 
@@ -42,7 +39,7 @@ export const Index = () => {
 
 
         return (
-            <div className="Home">
+            <div className={styles.home}>
                 <PageTitle
                     title="Welcome to Main Page"
                     text="Here you can see our products"
@@ -50,7 +47,7 @@ export const Index = () => {
                 <div className="">
                     <Filter/>
                 </div>
-                <Grid>
+                <div className={styles.items}>
                     {!!items.length
                         ? items.map((item, index) => {
                             if (index + 1 === items.length) {
@@ -59,7 +56,7 @@ export const Index = () => {
                             return <Item key={item.id} {...item}/>
                         })
                         : ""}
-                </Grid>
+                </div>
                 {itemsLoading && <div>loading</div>}
             </div>
         );

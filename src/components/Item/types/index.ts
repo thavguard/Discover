@@ -58,4 +58,10 @@ export interface ICreateItem {
     info: string;
     address: string;
     tel: string;
+    wasCreated: number
+}
+
+export interface IItems {
+    items: IItem[]
+    totalPages: number
 }
