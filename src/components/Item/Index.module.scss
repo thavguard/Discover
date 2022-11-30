@@ -6,6 +6,7 @@
 
   margin-top: 12px;
 
+
   .body {
     display: flex;
   }
@@ -38,6 +39,7 @@
     background: $primary;
     height: 600px;
     width: 100%;
+
     img {
       height: 600px;
       object-fit: contain;
@@ -59,12 +61,44 @@
     margin-bottom: 32px;
   }
 
-  .charactiristics {
+  .characteristics {
     margin-left: 16px;
   }
 
   .sidebar {
     max-width: 470px;
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .item {
+    section {
+      margin-bottom: 16px;
+    }
+
+    .content {
+      max-width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .title,
+    .price {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .photos {
+      height: 300px;
+
+      img {
+        height: 300px;
+      }
+    }
+
+    .sidebar {
+      margin-bottom: 16px;
+      max-width: 100%;
+    }
   }
 }

@@ -9,6 +9,7 @@ import { Grid } from "../Home/components/Grid/Grid";
 import { Loader } from "../common/Loader/Loader";
 import { fetchActiveItem } from "../../store/slices/items/items.slice";
 import { ItemCharacteristic } from "./components/ItemCharactiristic/ItemCharacteristic";
+import { useMediaQuery } from "usehooks-ts";
 
 type Props = {};
 
@@ -16,6 +17,7 @@ export const Index = (props: Props) => {
     const { id } = useParams();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const isMobile = useMediaQuery("(max-width: 600px)")
 
     const { items, activeItem } = useAppSelector((state) => state.items);
 
@@ -45,6 +47,20 @@ export const Index = (props: Props) => {
                             alt=""
                         />
                     </section>
+                    {isMobile && <div className={styles.sidebar}>
+                        <Sticky top={20} className={styles.sticky}>
+                            <div className={styles.price}>{activeItem.price} $</div>
+                            <div className={styles.info}>
+                                <div className={styles.phone}>
+                                    <a className={styles.number} href={`tel:${activeItem.tel}`}>
+                                        <Button size="big" br="br-1">
+                                            {activeItem.tel}
+                                        </Button>
+                                    </a>
+                                </div>
+                            </div>
+                        </Sticky>
+                    </div>}
                     <section>
                         <h3>address</h3>
                         <div className={styles.address}>
@@ -56,8 +72,8 @@ export const Index = (props: Props) => {
                         </div>
                     </section>
                     <section>
-                        <h3>charactiristics</h3>
-                        <div className={styles.charactiristics}>
+                        <h3>characteristics</h3>
+                        <div className={styles.characteristics}>
                             {activeItem.info?.map((e) => (
                                 <ItemCharacteristic
                                     title={e.title}
@@ -80,7 +96,7 @@ export const Index = (props: Props) => {
                         </Grid>
                     </section>
                 </div>
-                <div className={styles.sidebar}>
+                {!isMobile && <div className={styles.sidebar}>
                     <Sticky top={20} className={styles.sticky}>
                         <div className={styles.price}>{activeItem.price} $</div>
                         <div className={styles.info}>
@@ -93,7 +109,8 @@ export const Index = (props: Props) => {
                             </div>
                         </div>
                     </Sticky>
-                </div>
+                </div>}
+
             </div>
         </div>
     );
