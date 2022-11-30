@@ -1,3 +1,5 @@
+@import "../../../../style/variables";
+
 .item {
   width: 250px;
   cursor: pointer;
@@ -26,7 +28,8 @@
     margin-bottom: 10px;
 
     img {
-      object-fit: cover;
+      background: $primary;
+      object-fit: contain;
       height: 160px;
     }
   }
@@ -92,7 +95,8 @@
 
     &__img {
       img {
-        //object-fit: contain;
+        background: $primary;
+        object-fit: contain;
       }
     }
   }
