@@ -12,7 +12,7 @@ const initialState = {
         creator: '',
         name: '',
         price: ['', ''],
-        wasCreated: Date.now().toString(),
+        wasCreated: '',
     },
     page: 1,
 } as IHomeState
