@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../../../core-ui/Button/Button";
 import { Field } from "../../../core-ui/Field/Field";
 import { Input } from "../../../core-ui/Input/Input";
@@ -60,6 +60,7 @@ type Props = {};
 export const FormItems = ({}: Props) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
+    const [itemSubmit, setItemSubmit] = useState<boolean>(false)
 
     const { itemTypes, itemCharacteristics } = useAppSelector(
         (state) => state.items
@@ -93,6 +94,7 @@ export const FormItems = ({}: Props) => {
         } as IFormItems,
         validationSchema: FormItemsSchema,
         onSubmit: async (values: IFormItems) => {
+            setItemSubmit(true)
             console.log(values);
 
             const formData = createFormData<ICreateItem>({
@@ -106,6 +108,9 @@ export const FormItems = ({}: Props) => {
 
             const item = await dispatch(createItem(formData));
             navigate('/item/' + item.id)
+
+            setItemSubmit(false)
+
 
         },
     });
@@ -282,7 +287,7 @@ export const FormItems = ({}: Props) => {
                 />
                 {errors.tel && touched.tel && <Invalid>{errors.tel}</Invalid>}
             </Field>
-            <Button disabled={!isValid}>create</Button>
+            <Button disabled={!isValid || itemSubmit}>create</Button>
         </form>
     );
 };
