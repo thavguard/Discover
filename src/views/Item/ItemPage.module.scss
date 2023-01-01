@@ -1,4 +1,4 @@
-@import "../../style/variables";
+@import "styles";
 
 .item {
   max-width: 100%;
@@ -71,7 +71,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $mediaMobile) {
   .item {
     section {
       margin-bottom: 16px;

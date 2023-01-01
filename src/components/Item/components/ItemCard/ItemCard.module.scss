@@ -1,4 +1,4 @@
-@import "../../../../style/variables";
+@import "styles";
 
 .item {
   width: 250px;
@@ -29,7 +29,7 @@
 
     img {
       background: $primary;
-      object-fit: contain;
+      object-fit: cover;
       height: 160px;
     }
   }
@@ -89,7 +89,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $mediaMobile) {
   .item {
     width: 170px;
 

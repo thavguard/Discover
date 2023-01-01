@@ -1,13 +1,10 @@
+@import "styles";
+
 .signupPage {
   height: calc(100vh - 200px);
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .container {
-
-  }
-
 
   .login {
     display: flex;
@@ -17,7 +14,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $mediaMobile) {
   .signupPage {
     .container {
       width: 100%;

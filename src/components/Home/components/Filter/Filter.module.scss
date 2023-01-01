@@ -1,8 +1,4 @@
-@import "./../../../../style/variables";
-
-.container {
-
-}
+@import "styles";
 
 .title {
   font-size: 18px;
@@ -14,20 +10,13 @@
   margin-bottom: 8px;
 }
 
-.filter {
-  display: flex;
-}
-
 .label {
   margin-bottom: 6px;
-  margin-bottom: 4px;
 }
 
 .name {
   max-width: 300px;
   width: 100%;
-
-  margin-right: 12px;
 }
 
 .itemTypeId {
@@ -45,7 +34,7 @@
 }
 
 .price {
-  @include duo();
+  display: block;
 }
 
 .selectDate {
@@ -56,11 +45,14 @@
   position: absolute;
 }
 
-.name, .itemTypeId, .creator, .selectPrice {
-  margin-right: 12px;
+.name,
+.itemTypeId,
+.creator,
+.selectPrice {
+  margin-bottom: 12px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: $mediaMobile) {
   .container {
     position: absolute;
     background: #fff;
@@ -72,10 +64,13 @@
     padding: 16px 16px 16px 0;
   }
 
-  .name, .itemTypeId, .creator, .selectPrice, .selectDate {
+  .name,
+  .itemTypeId,
+  .creator,
+  .selectPrice,
+  .selectDate {
     max-width: 100%;
 
     margin: 0 0 8px 0;
   }
-
 }

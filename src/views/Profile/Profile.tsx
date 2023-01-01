@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { Item } from "../Item/components/ItemCard/Item";
-import { Grid } from "../Home/components/Grid/Grid";
-import { PageTitle } from "../core-ui/PageTitle/PageTitle";
+import { FC, useEffect } from "react";
+import { Item } from "../../components/Item/components/ItemCard/Item";
+import { Grid } from "../../components/Home/components/Grid/Grid";
+import { PageTitle } from "../../components/core-ui/PageTitle/PageTitle";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { fetchItems } from "../../store/slices/items/items.slice";
-import styles from "./Index.module.scss";
-import { Loader } from "../common/Loader/Loader";
+import styles from "./Profile.module.scss";
+import { Loader } from "../../components/common/Loader/Loader";
 
 type Props = {};
 
-export const Index = (props: Props) => {
+export const Profile: FC = (props: Props) => {
   const { user } = useAppSelector((state) => state.auth);
   const { items } = useAppSelector((state) => state.items);
   const dispatch = useAppDispatch();

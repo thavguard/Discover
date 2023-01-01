@@ -11,38 +11,38 @@ export const AppRouter = (props: Props) => {
   if (!isInitDone) return null;
 
   const Profile = React.lazy(() =>
-    import("../Profile/Index").then((module) => ({
-      default: module.Index,
+    import("../../views/Profile/Profile").then((module) => ({
+      default: module.Profile,
     }))
   );
 
   const HomePage = React.lazy(() =>
-    import("../Home/Index").then((module) => ({
-      default: module.Index,
+    import("../../views/Home/Home").then((module) => ({
+      default: module.Home,
     }))
   );
 
   const Login = React.lazy(() =>
-    import("../Login/Index").then((module) => ({
+    import("../../views/Login/Login").then((module) => ({
       default: module.Login,
     }))
   );
 
   const Signup = React.lazy(() =>
-    import("../Signup/Index").then((module) => ({
+    import("../../views/Signup/Signup").then((module) => ({
       default: module.Signup,
     }))
   );
 
   const AddItem = React.lazy(() =>
-    import("../Item/pages/AddItem/AddItem").then((module) => ({
-      default: module.AdddItem,
+    import("../../views/AddItem/AddItem").then((module) => ({
+      default: module.AddItem,
     }))
   );
 
   const ItemPage = React.lazy(() =>
-    import("../Item/Index").then((module) => ({
-      default: module.Index,
+    import("../../views/Item/ItemPage").then((module) => ({
+      default: module.ItemPage,
     }))
   );
 

@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { LoginForm } from "./components/LoginForm/LoginForm";
-import { Error } from "../core-ui/Error/Error";
-import { Invalid } from "../core-ui/Invalid/Invalid";
-import { AppLink } from "../core-ui/Link/Link";
+import { LoginForm } from "../../components/Login/components/LoginForm/LoginForm";
+import { Error } from "../../components/core-ui/Error/Error";
+import { Invalid } from "../../components/core-ui/Invalid/Invalid";
+import { AppLink } from "../../components/core-ui/Link/Link";
 import { useAppSelector } from "../../hooks/hooks";
-import styles from "./Index.module.scss";
+import styles from "./Login.module.scss";
 
 type Props = {};
 
-export const Login = (props: Props) => {
+export const Login: FC = (props: Props) => {
   const { error } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 

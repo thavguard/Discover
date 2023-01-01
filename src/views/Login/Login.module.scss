@@ -1,3 +1,5 @@
+@import "styles";
+
 .auth__form__container {
   height: calc(100vh - 150px);
   display: flex;
@@ -11,7 +13,6 @@
 }
 
 .auth__form {
-
 }
 
 .createAccount {
@@ -24,7 +25,7 @@
   text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: $mediaMobile) {
   .auth__form {
     width: 100%;
   }
