@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Item } from "../../components/Item/components/ItemCard/Item";
+import { ItemCard } from "../../components/Item/components/ItemCard/ItemCard";
 import { Grid } from "../../components/Home/components/Grid/Grid";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import styles from "./Home.module.scss";
@@ -80,9 +80,9 @@ export const Home: FC = () => {
         ) : !!items.length ? (
           items.map((item, index) => {
             if (index + 1 === items.length) {
-              return <Item key={item.id} {...item} ref={lastItem} />;
+              return <ItemCard key={item.id} {...item} ref={lastItem} />;
             }
-            return <Item key={item.id} {...item} />;
+            return <ItemCard key={item.id} {...item} />;
           })
         ) : (
           "Простите, по данному запросу пока нет товаров"

@@ -1,103 +1,60 @@
-@import "styles";
-
-.item {
-  width: 250px;
-  cursor: pointer;
+.card {
+  max-width: 250px;
+  width: 100%;
 
   margin-bottom: 16px;
 
-  &__info {
-  }
-
-  &__name {
-    font-weight: 600;
-    font-size: 16px;
-    margin-bottom: 2px;
-  }
-
-  &__desc {
-    font-size: 14px;
-    color: lighten(#151515, 20%);
-    margin-bottom: 8px;
-    height: 31px;
-    overflow: hidden;
-    line-height: 16px;
-  }
-
-  &__img {
-    margin-bottom: 10px;
+  .photo {
+    .img {
+      cursor: pointer;
+    }
 
     img {
-      background: $primary;
       object-fit: cover;
-      height: 160px;
-    }
-  }
-
-  &__price {
-    font-weight: 600;
-    font-size: 16px;
-  }
-
-  &__btns {
-    display: flex;
-
-    :not(:last-of-type) {
-      margin-right: 10px;
-    }
-  }
-}
-
-.add_to_favorite {
-  display: flex;
-  cursor: pointer;
-  font-size: 14px;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-
-  &::before,
-  &::after {
-    content: "";
-    display: block;
-    position: absolute;
-    min-height: 1px;
-    background: linear-gradient(21deg, #dd03e4, #5611ec);
-    transition: all 0.3s ease-out;
-  }
-
-  &::before {
-    width: 0;
-    bottom: 0;
-    left: 0;
-  }
-
-  &::after {
-    top: 0;
-    left: 100%;
-    width: 100%;
-  }
-
-  &:hover {
-    &::after {
-      left: 0;
     }
 
-    &::before {
+    .img,
+    img {
       width: 100%;
+      height: 180px;
     }
   }
-}
 
-@media (max-width: $mediaMobile) {
-  .item {
-    width: 170px;
+  .info {
+    .title {
+      display: flex;
+      justify-content: space-between;
 
-    &__img {
-      img {
-        background: $primary;
-        object-fit: contain;
+      margin: 6px 0 4px;
+
+      line-height: 18px;
+      cursor: pointer;
+
+      .name {
+        font-size: 15px;
+        font-weight: 700;
       }
+
+      .fav {
+        &:hover {
+          svg {
+            fill: red;
+          }
+        }
+      }
+    }
+
+    .price {
+      font-size: 16px;
+      line-height: 18px;
+
+      font-weight: 700;
+    }
+
+    .address {
+      color: rgb(70, 138, 241);
+
+      font-size: 14px;
     }
   }
 }

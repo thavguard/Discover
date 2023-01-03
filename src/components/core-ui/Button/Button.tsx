@@ -10,6 +10,7 @@ type Props = {
   size?: "big";
   disabled?: boolean;
   children: React.ReactNode;
+  weight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
 };
 
 export const Button = ({
@@ -20,6 +21,7 @@ export const Button = ({
   disabled,
   children,
   size,
+  weight = 400,
 }: Props) => {
   return (
     <button
@@ -31,6 +33,7 @@ export const Button = ({
       data-size={size}
       data-disabled={disabled}
       disabled={disabled}
+      style={{ fontWeight: weight }}
     >
       <div className={styles.children}>{children}</div>
     </button>

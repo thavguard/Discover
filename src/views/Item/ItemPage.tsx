@@ -4,7 +4,7 @@ import { Button } from "../../components/core-ui/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import styles from "./ItemPage.module.scss";
 import Sticky from "react-stickynode";
-import { Item } from "../../components/Item/components/ItemCard/Item";
+import { ItemCard } from "../../components/Item/components/ItemCard/ItemCard";
 import { Grid } from "../../components/Home/components/Grid/Grid";
 import { Loader } from "../../components/common/Loader/Loader";
 import { fetchActiveItem } from "../../store/slices/items/items.slice";
@@ -93,7 +93,7 @@ export const ItemPage: FC<Props> = (props) => {
             <h3>looks like it</h3>
             <Grid columns="repeat(3, 200px)">
               {!!items.length
-                ? itemsLikeIt.map((item) => <Item key={item.id} {...item} />)
+                ? itemsLikeIt.map((item) => <ItemCard key={item.id} {...item} />)
                 : ""}
             </Grid>
           </section>

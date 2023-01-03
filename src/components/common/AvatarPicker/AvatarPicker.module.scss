@@ -1,3 +1,5 @@
+@import "styles";
+
 .AvatarPicker {
   display: flex;
   align-items: center;
@@ -11,7 +13,7 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: #121212;
+    background: $black-100;
 
     margin-right: 16px;
 
@@ -32,7 +34,7 @@
   }
 
   .remove {
-    color: #e74c3c;
+    color: $red;
     cursor: pointer;
   }
 }

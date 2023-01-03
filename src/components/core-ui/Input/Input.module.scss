@@ -2,9 +2,9 @@
 
 .inputContainer {
   input {
-    border: 1px solid $primary;
+    border: 1.5px solid $gray;
     border-radius: 4px;
-    padding: 12px;
+    padding: 8px 10px;
 
     // max-width: 520px;
     width: 100%;
@@ -19,13 +19,13 @@
 
     &::placeholder {
       font-family: inherit;
-      color: $gray;
+      color: $placeholder;
       font-size: 13px;
       text-transform: lowercase;
     }
 
     &:hover {
-      border-color: $gray;
+      border-color: $primary;
     }
   }
 }

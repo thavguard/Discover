@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
-import "./Header.scss";
+import styles from "./Header.module.scss";
 import cartImg from "../../assets/images/cart.png";
 import { logout } from "../../../store/slices/auth/auth.slice";
 import { Button } from "../../core-ui/Button/Button";
@@ -19,12 +19,12 @@ export const Header = (props: Props) => {
   };
 
   return (
-    <div className="header">
-      <div className="navbar">
-        <div className="navbar__link">
+    <div className={styles.header}>
+      <div className={styles.navbar}>
+        <div className={styles.navbar__link}>
           <Link to={"/"}>Home</Link>
         </div>
-        <div className="navbar__link">
+        <div className={styles.navbar__link}>
           {isAuth ? (
             <Link to={"/profile"}>{user.username}</Link>
           ) : (
@@ -32,17 +32,17 @@ export const Header = (props: Props) => {
           )}
         </div>
       </div>
-      <div className="navbar">
-        <div className="navbar__link">
+      <div className={styles.navbar}>
+        <div className={styles.navbar__link}>
           {isAuth && (
             <Link to={"/addItem"}>
-              <Button br="br-0">Add item</Button>
+              <Button weight={600}>Add item</Button>
             </Link>
           )}
         </div>
-        <div className="navbar__link">
+        <div className={styles.navbar__link}>
           {isAuth && (
-            <div className={"navbar__link--logout"} onClick={onLogout}>
+            <div className={styles.navbar__link__logout} onClick={onLogout}>
               Logout
             </div>
           )}

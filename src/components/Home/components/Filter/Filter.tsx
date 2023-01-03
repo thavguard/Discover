@@ -118,8 +118,6 @@ const Filter: FC<Props> = ({ items, total }) => {
 
   // if (!highestСost) return null;
 
-  console.log(total);
-
   if (!total.price) return null;
 
   return (

@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { Item } from "../../components/Item/components/ItemCard/Item";
+import { ItemCard } from "../../components/Item/components/ItemCard/ItemCard";
 import { Grid } from "../../components/Home/components/Grid/Grid";
 import { PageTitle } from "../../components/core-ui/PageTitle/PageTitle";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
@@ -23,7 +23,7 @@ export const Profile: FC = (props: Props) => {
       <div className={styles.your_ard}>Your ads</div>
       <Grid>
         {items.map((item) => (
-          <Item key={item.id} {...item} />
+          <ItemCard key={item.id} {...item} />
         ))}
       </Grid>
     </div>

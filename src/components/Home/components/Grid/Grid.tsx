@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
 import { fetchItems } from "../../../../store/slices/items/items.slice";
-import { Item } from "../../../Item/components/ItemCard/Item";
+import { ItemCard } from "../../../Item/components/ItemCard/ItemCard";
 import "./Grid.scss";
 
 type Props = {
