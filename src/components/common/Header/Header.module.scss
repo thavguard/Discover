@@ -1,21 +1,51 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-}
+@import "styles";
 
-.navbar {
-  display: flex;
-  &__link {
+.header {
+  margin-bottom: 20px;
+
+  .navbar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    &:not(:last-of-type) {
-      margin-right: 10px;
+
+    padding: 10px $pageMargin;
+
+    background: $gray;
+
+
+    .logo {
+      span {
+        font-family: 'Kanit', sans-serif;
+        text-transform: uppercase;
+        font-size: 32px;
+        font-weight: 600;
+        color: $white-100;
+
+        cursor: pointer;
+      }
     }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+
+      .navBtn {
+        color: $white-100;
+        cursor: pointer;
+
+        .user {
+          font-weight: 700;
+          font-size: 18px;
+        }
+
+        &:not(:last-of-type) {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  .search {
+
   }
 }

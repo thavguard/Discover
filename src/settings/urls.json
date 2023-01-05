@@ -1,0 +1,13 @@
+{
+  "home": "/",
+  "search": "/search",
+  "profile": "/profile",
+  "item": {
+    "root": "/item",
+    "add": "/new-item",
+    "edit": "/edit",
+    "id": "/:id"
+  },
+  "login": "/login",
+  "signup": "/signup"
+}

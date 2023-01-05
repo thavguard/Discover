@@ -9,21 +9,23 @@ import { fetchItems } from "./store/slices/items/items.slice";
 import "./index.scss";
 
 export const App: FC = () => {
-  const dispatch = useAppDispatch();
-  const { isLoading } = useAppSelector((state) => state.auth);
+    const dispatch = useAppDispatch();
+    const { isLoading } = useAppSelector((state) => state.auth);
 
-  useEffect(() => {
-    dispatch(checkAuth());
-  }, []);
+    useEffect(() => {
+        dispatch(checkAuth());
+    }, []);
 
-  if (isLoading) return <Loader />;
+    if (isLoading) return <Loader/>;
 
-  return (
-    <div id="container">
-      <Header />
-      <div className="content">
-        <AppRouter />
-      </div>
-    </div>
-  );
+    return (
+        <>
+            <Header/>
+            <div id="container">
+                <div className="content">
+                    <AppRouter/>
+                </div>
+            </div>
+        </>
+    );
 };

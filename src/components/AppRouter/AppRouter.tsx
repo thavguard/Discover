@@ -1,122 +1,84 @@
-import React, { lazy, Suspense } from "react";
+import React, { FC, lazy, ReactNode, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAppSelector } from "../../hooks/hooks";
-import { Loader } from "../common/Loader/Loader";
+import urls from 'settings/urls.json'
+
+import { Profile } from 'views/Profile/Profile'
+import { Home } from 'views/Home/Home'
+import { AddItem } from 'views/AddItem/AddItem'
+import { ItemPage } from 'views/Item/ItemPage'
+import { Login } from 'views/Login/Login'
+import { Signup } from 'views/Signup/Signup'
+import { Search } from 'views/Search/Search'
+import * as url from "url";
+
 
 type Props = {};
 
-export const AppRouter = (props: Props) => {
-  const { isAuth, isInitDone } = useAppSelector((state) => state.auth);
+interface IRoute {
+    path: string
+    component: any
+}
 
-  if (!isInitDone) return null;
+const authRoutes: IRoute[] = [
+    {
+        path: urls.profile,
+        component: <Profile/>
+    },
+    {
+        path: urls.item.add,
+        component: <AddItem/>
+    }, {
+        path: urls.item.root + urls.item.id + urls.item.edit,
+        component: <ItemPage/>
+    },
+]
 
-  const Profile = React.lazy(() =>
-    import("../../views/Profile/Profile").then((module) => ({
-      default: module.Profile,
-    }))
-  );
 
-  const HomePage = React.lazy(() =>
-    import("../../views/Home/Home").then((module) => ({
-      default: module.Home,
-    }))
-  );
+const publicRoutes: IRoute[] = [
+    {
+        path: urls.home,
+        component: <Home/>
+    }, {
+        path: urls.item.root + urls.item.id,
+        component: <ItemPage/>
+    },
+    {
+        path: urls.search,
+        component: <Search/>
+    },
+]
 
-  const Login = React.lazy(() =>
-    import("../../views/Login/Login").then((module) => ({
-      default: module.Login,
-    }))
-  );
+const notAuth: IRoute[] = [
+    {
 
-  const Signup = React.lazy(() =>
-    import("../../views/Signup/Signup").then((module) => ({
-      default: module.Signup,
-    }))
-  );
+        path: urls.login,
+        component: <Login/>
+    },
+    {
 
-  const AddItem = React.lazy(() =>
-    import("../../views/AddItem/AddItem").then((module) => ({
-      default: module.AddItem,
-    }))
-  );
+        path: urls.signup,
+        component: <Signup/>
+    },
+]
 
-  const ItemPage = React.lazy(() =>
-    import("../../views/Item/ItemPage").then((module) => ({
-      default: module.ItemPage,
-    }))
-  );
+export const AppRouter = ({}: Props) => {
+    const { isAuth, isInitDone } = useAppSelector((state) => state.auth);
 
-  return !!isAuth ? (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Suspense>
-            <HomePage />
-          </Suspense>
+    if (!isInitDone) return null;
+
+
+    return <Routes>
+        {
+            isAuth
+                ?
+                authRoutes.map(item => <Route key={item.path} path={item.path} element={item.component}/>)
+                :
+                notAuth.map(item => <Route key={item.path} path={item.path} element={item.component}/>)
         }
-      />
-      <Route
-        path="profile"
-        element={
-          <Suspense fallback={<Loader />}>
-            <Profile />
-          </Suspense>
-        }
-      />
-      <Route
-        path="addItem"
-        element={
-          <Suspense fallback={<Loader />}>
-            <AddItem />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/item/:id"
-        element={
-          <Suspense fallback={<Loader />}>
-            <ItemPage />
-          </Suspense>
-        }
-      />
-      <Route path="*" element={<Navigate to={"/"} />} />
+        {publicRoutes.map(item => <Route key={item.path} path={item.path} element={item.component}/>)}
+        <Route path="*" element={<Navigate to={urls.home}/>}/>
     </Routes>
-  ) : (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Suspense fallback={<Loader />}>
-            <HomePage />
-          </Suspense>
-        }
-      />
-      <Route
-        path="login"
-        element={
-          <Suspense fallback={<Loader />}>
-            <Login />
-          </Suspense>
-        }
-      />
-      <Route
-        path="registration"
-        element={
-          <Suspense fallback={<Loader />}>
-            <Signup />
-          </Suspense>
-        }
-      />
-      <Route
-        path="/item/:id"
-        element={
-          <Suspense fallback={<Loader />}>
-            <ItemPage />
-          </Suspense>
-        }
-      />
-      <Route path="*" element={<Navigate to={"/"} />} />
-    </Routes>
-  );
+
+
 };

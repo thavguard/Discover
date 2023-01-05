@@ -20,6 +20,8 @@ import { createFormData } from "../../../../utils/createFormData";
 import ItemCharacteristicInput from "../ItemCharacteristicInput/ItemCharacteristicInput";
 import { useNavigate } from "react-router-dom";
 import { ICreateItem, IFormItems } from "../../types";
+import urls from 'settings/urls.json'
+import * as url from "url";
 
 const FormItemsSchema = Yup.object().shape({
     name: Yup.string()
@@ -107,7 +109,7 @@ export const FormItems = ({}: Props) => {
             });
 
             const item = await dispatch(createItem(formData));
-            navigate('/item/' + item.id)
+            navigate(urls.item.root + item.id)
 
             setItemSubmit(false)
 

@@ -9,23 +9,23 @@ import { Loader } from "../../components/common/Loader/Loader";
 
 type Props = {};
 
-export const Profile: FC = (props: Props) => {
-  const { user } = useAppSelector((state) => state.auth);
-  const { items } = useAppSelector((state) => state.items);
-  const dispatch = useAppDispatch();
+export const Profile: FC<Props> = (props) => {
+    const { user } = useAppSelector((state) => state.auth);
+    const { items } = useAppSelector((state) => state.items);
+    const dispatch = useAppDispatch();
 
-  return (
-    <div className={styles.profile}>
-      <PageTitle
-        title={`${user.username} profile`}
-        text="Here you can create new products"
-      />
-      <div className={styles.your_ard}>Your ads</div>
-      <Grid>
-        {items.map((item) => (
-          <ItemCard key={item.id} {...item} />
-        ))}
-      </Grid>
-    </div>
-  );
+    return (
+        <div className={styles.profile}>
+            <PageTitle
+                title={`${user.username} profile`}
+                text="Here you can create new products"
+            />
+            <div className={styles.your_ard}>Your ads</div>
+            <Grid>
+                {items.map((item) => (
+                    <ItemCard key={item.id} {...item} />
+                ))}
+            </Grid>
+        </div>
+    );
 };
