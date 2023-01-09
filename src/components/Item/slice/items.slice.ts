@@ -1,10 +1,9 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 import { axios } from "../../../API/axios";
-import { IItem, IItemType } from "../../../components/Item/types";
-import { ItemCharacteristic, ItemsState } from "../../types";
+import { IItem, IItemType } from "../types";
+import { ItemCharacteristic, ItemsState } from "../../../store/types";
 
 const initialState: ItemsState = {
-    items: [],
     itemTypes: [],
     activeItem: {} as IItem,
     itemCharacteristics: [],
@@ -15,9 +14,6 @@ export const itemsSlice = createSlice({
     name: "items",
     initialState,
     reducers: {
-        setItems: (state, action: PayloadAction<IItem[]>) => {
-            state.items = action.payload;
-        },
         setItemTypes: (state, action: PayloadAction<IItemType[]>) => {
             state.itemTypes = action.payload;
         },
@@ -37,16 +33,6 @@ export const itemsSlice = createSlice({
     },
 });
 
-export const fetchItems = (limit?: number) => async (dispatch: Dispatch) => {
-    dispatch(itemsSlice.actions.setItemsLoading(true))
-    const { data } = await axios.get("/api/item", {
-        params: {
-            limit
-        }
-    });
-    dispatch(itemsSlice.actions.setItems(data));
-    dispatch(itemsSlice.actions.setItemsLoading(false))
-};
 
 export const createItem =
     (formData: FormData) => async (dispatch: Dispatch) => {

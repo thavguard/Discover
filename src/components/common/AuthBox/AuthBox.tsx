@@ -1,14 +1,14 @@
-import React from 'react'
+import { FC, PropsWithChildren } from 'react'
 import styles from './AuthBox.module.scss'
 
-type Props = {
-    children: React.ReactNode
+interface Props {
+
 }
 
-export const AuthBox = ({children}: Props) => {
-  return (
-    <div className={styles.box}>
-        {children}
-    </div>
-  )
+export const AuthBox: FC<PropsWithChildren<Props>> = ({ children }) => {
+    return (
+        <div className={styles.box}>
+            {children}
+        </div>
+    )
 }

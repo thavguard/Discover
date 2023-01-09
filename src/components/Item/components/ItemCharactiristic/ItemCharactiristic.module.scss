@@ -1,14 +1,17 @@
+@import "styles";
+
 .container {
-  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 
-  .title {
+  .title, .desc {
+    line-height: 18px;
     font-size: 16px;
-    font-weight: 600;
-
-    margin-bottom: 8px;
   }
 
-  .desc {
-    font-size: 14px;
+  .title {
+    margin-right: 8px;
+    color: $gray;
   }
 }

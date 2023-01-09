@@ -33,3 +33,9 @@ img {
   padding: 0 $pageMargin;
   // margin: 0 auto;
 }
+
+@media (max-width: $mediaLaptop) {
+  #container {
+    padding: 0 $pageMarginLaptop;
+  }
+}

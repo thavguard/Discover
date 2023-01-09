@@ -10,7 +10,7 @@
 
     padding: 10px $pageMargin;
 
-    background: $gray;
+    background: $black-200;
 
 
     .logo {
@@ -45,7 +45,74 @@
     }
   }
 
-  .search {
 
+  .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: $white-100;
+
+    padding: 16px 0;
+
+
+    .input__box {
+      $borderRadius: 6px;
+      display: flex;
+
+      max-width: 700px;
+      width: 100%;
+
+      background: $primary;
+
+      border-radius: $borderRadius;
+
+      padding: 2px;
+
+      .input {
+        width: 100%;
+
+
+        input {
+          border: none;
+        }
+      }
+    }
+
+    &__btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 100%;
+
+      background: $primary;
+
+      padding: 8px 16px;
+
+      color: $white-100;
+      font-weight: 600;
+      font-size: 16px;
+
+      cursor: pointer;
+    }
+
+
+  }
+}
+
+@media (max-width: $mediaLaptop) {
+  .header {
+    .navbar {
+      padding: 10px $pageMarginLaptop;
+    }
+  }
+}
+
+@media (max-width: $mediaMobile) {
+  .header {
+    .navbar {
+      padding: 4px $pageMarginMobile;
+    }
   }
 }

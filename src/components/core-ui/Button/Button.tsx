@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useEffect, useRef, useState } from "react";
+import { FC, PropsWithChildren, } from "react";
 import styles from "./Button.module.scss";
 
 type Props = {
@@ -9,22 +9,21 @@ type Props = {
     br?: "br-0" | "br-1";
     size?: "big";
     disabled?: boolean;
-    children: React.ReactNode;
     weight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
     variant?: 'primary' | 'secondary' | 'outlined'
 };
 
-export const Button = ({
-                           onClick = () => null,
-                           type = "submit",
-                           fullwidth = false,
-                           br,
-                           disabled,
-                           children,
-                           size,
-                           weight = 400,
-                           variant = 'primary',
-                       }: Props) => {
+export const Button: FC<PropsWithChildren<Props>> = ({
+                                                         onClick = () => null,
+                                                         type = "submit",
+                                                         fullwidth = false,
+                                                         br,
+                                                         disabled,
+                                                         children,
+                                                         size,
+                                                         weight = 400,
+                                                         variant = 'primary',
+                                                     }) => {
     return (
         <button
             className={classNames([styles.button])}

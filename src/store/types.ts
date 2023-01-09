@@ -1,7 +1,6 @@
 import { IItem, IItemType } from "../components/Item/types";
 
 export interface ItemsState {
-    items: IItem[];
     itemTypes: IItemType[];
     activeItem: IItem;
     itemCharacteristics: ItemCharacteristic[];

@@ -1,3 +1,5 @@
+@import "styles";
+
 .card {
   max-width: 250px;
   width: 100%;
@@ -52,7 +54,7 @@
     }
 
     .address {
-      color: rgb(70, 138, 241);
+      color: $blue;
 
       font-size: 14px;
     }

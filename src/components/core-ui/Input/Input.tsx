@@ -1,4 +1,4 @@
-import React, { ChangeEvent, HTMLAttributes, FocusEvent } from "react";
+import { FC, ChangeEvent, HTMLAttributes, FocusEvent, ReactNode } from "react";
 import styles from "./Input.module.scss";
 
 interface Props extends HTMLAttributes<HTMLInputElement> {
@@ -11,16 +11,16 @@ interface Props extends HTMLAttributes<HTMLInputElement> {
     onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({
-                          type = "text",
-                          onChange,
-                          onBlur,
-                          name,
-                          placeholder,
-                          id,
-                          value,
-                          ...props
-                      }: Props) => {
+export const Input: FC<Props> = ({
+                                     type = "text",
+                                     onChange,
+                                     onBlur,
+                                     name,
+                                     placeholder,
+                                     id,
+                                     value,
+                                     ...props
+                                 }) => {
     return (
         <div className={styles.inputContainer}>
             <input

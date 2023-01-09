@@ -1,23 +1,19 @@
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
-import { fetchItems } from "../../../../store/slices/items/items.slice";
-import { ItemCard } from "../../../Item/components/ItemCard/ItemCard";
+import { FC, PropsWithChildren, UIEvent } from "react";
 import "./Grid.scss";
 
-type Props = {
+interface Props {
     columns?: string;
     gap?: string;
-    onScroll?: (e: React.UIEvent<HTMLElement>) => void
-    children: React.ReactNode;
+    onScroll?: (e: UIEvent<HTMLElement>) => void
 };
 
-export const Grid = (
+export const Grid: FC<PropsWithChildren<Props>> = (
     {
         children,
         columns = "repeat(4, 200px)",
         gap = "20px 15px",
         onScroll
-    }: Props) => {
+    }) => {
     return (
         <div className="grid-container" onScroll={onScroll}>
             <div

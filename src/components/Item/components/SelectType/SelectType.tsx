@@ -6,17 +6,17 @@ import styles from "./SelectType.module.scss";
 import { IItemType } from "../../types";
 
 type Props = {
-  options: IItemType[];
-  onChange: (option: Option| null, actionMeta: ActionMeta<Option>) => void;
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+    options: IItemType[];
+    onChange: (e: string | number) => void;
+    onBlur?: React.FocusEventHandler<HTMLSelectElement>;
 };
 
 export const SelectType = ({ options, onChange, onBlur }: Props) => {
-  const typeToOption = options.map((e) => ({ value: e.id, label: e.name }));
+    const typeToOptions = options.map((e) => ({ value: e.id, label: e.name }));
 
-  return (
-    <div>
-      <Select options={typeToOption} onChange={onChange} onBlur={onBlur}/>
-    </div>
-  );
+    return (
+        <div>
+            <Select options={typeToOptions} onChange={onChange} onBlur={onBlur}/>
+        </div>
+    );
 };

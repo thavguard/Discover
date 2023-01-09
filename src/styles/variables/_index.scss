@@ -1,1 +1,8 @@
 @import "./colors", "./blocks", './media';
+
+:export {
+  primary: $primary;
+  primary100: $primary-100;
+  primary200: $primary-200;
+  secondary: $secondary
+}

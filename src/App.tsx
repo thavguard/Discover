@@ -5,7 +5,6 @@ import { Header } from "./components/common/Header/Header";
 import { Loader } from "./components/common/Loader/Loader";
 import { useAppDispatch, useAppSelector } from "./hooks/hooks";
 import { checkAuth } from "./store/slices/auth/auth.slice";
-import { fetchItems } from "./store/slices/items/items.slice";
 import "./index.scss";
 
 export const App: FC = () => {

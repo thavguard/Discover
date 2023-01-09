@@ -1,16 +1,15 @@
-import React from "react";
+import { FC, PropsWithChildren } from "react";
 import styles from "./Field.module.scss";
 
-type Props = {
-  label?: string;
-  children: React.ReactNode;
+interface Props {
+    label?: string;
 };
 
-export const Field = ({ children, label }: Props) => {
-  return (
-    <div className={styles.field}>
-      <div className={styles.label}>{label}</div>
-      <div>{children}</div>
-    </div>
-  );
+export const Field: FC<PropsWithChildren<Props>> = ({ children, label }) => {
+    return (
+        <div className={styles.field}>
+            <div className={styles.label}>{label}</div>
+            <div>{children}</div>
+        </div>
+    );
 };

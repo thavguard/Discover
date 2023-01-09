@@ -12,7 +12,7 @@ import {
     createItem,
     fetchItemCharacteristics,
     fetchItemTypes,
-} from "../../../../store/slices/items/items.slice";
+} from "../../slice/items.slice";
 import { Loader } from "../../../common/Loader/Loader";
 import * as Yup from "yup";
 import { Invalid } from "../../../core-ui/Invalid/Invalid";
@@ -167,7 +167,7 @@ export const FormItems = ({}: Props) => {
             <Field label="type">
                 <SelectType
                     options={itemTypes}
-                    onChange={(e) => setFieldValue("itemTypeId", e?.value)}
+                    onChange={(e) => setFieldValue("itemTypeId", e.toString())}
                     onBlur={handleBlur}
                 />
                 {errors.itemTypeId && touched.itemTypeId && (

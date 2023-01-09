@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../components/core-ui/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
@@ -7,10 +7,12 @@ import Sticky from "react-stickynode";
 import { ItemCard } from "../../components/Item/components/ItemCard/ItemCard";
 import { Grid } from "../../components/Home/components/Grid/Grid";
 import { Loader } from "../../components/common/Loader/Loader";
-import { fetchActiveItem } from "../../store/slices/items/items.slice";
+import { fetchActiveItem } from "../../components/Item/slice/items.slice";
 import { ItemCharacteristic } from "../../components/Item/components/ItemCharactiristic/ItemCharacteristic";
 import { useMediaQuery } from "usehooks-ts";
 import urls from 'settings/urls.json'
+import { IItem, IItemsResponse } from "../../components/Item/types";
+import { axios } from "../../API/axios";
 
 type Props = {};
 
@@ -20,18 +22,37 @@ export const ItemPage: FC<Props> = (props) => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery("(max-width: 600px)");
 
-    const { items, activeItem } = useAppSelector((state) => state.items);
+    const { activeItem } = useAppSelector((state) => state.items);
 
-    const itemsLikeIt = items.filter(
-        (e) => e?.itemTypeId === activeItem?.itemTypeId && e.id !== activeItem.id
-    );
+    const [itemsLikeIt, setItemsLikeIt] = useState<IItem[]>([])
+
+
+    console.log(activeItem)
+
+    const fetchItemsLikeThis = async () => {
+        const { data } = await axios.get<IItemsResponse>('api/item', {
+            params: {
+                itemTypeId: activeItem.itemTypeId
+            }
+        })
+
+
+        setItemsLikeIt(data.items.filter(item => item.id !== +id!))
+    }
+
 
     useEffect(() => {
-        dispatch(fetchActiveItem(+id!));
-        window.scrollTo(0, 0);
+        if (id) {
+            dispatch(fetchActiveItem(+id));
+            window.scrollTo(0, 0);
+        }
+
     }, [id]);
 
-    if (!activeItem) navigate(urls.home);
+    useEffect(() => {
+        fetchItemsLikeThis()
+    }, [activeItem.id])
+
     if (!activeItem.name) return <Loader/>;
 
     const address = activeItem.address;
@@ -72,7 +93,7 @@ export const ItemPage: FC<Props> = (props) => {
                         </div>
                     )}
                     <section>
-                        <h3>address</h3>
+                        <h3>Address</h3>
                         <div className={styles.address}>
                             {address?.region ? `${address?.region}, ` : ""}
                             {address?.city ? `${address?.city}, ` : ""}
@@ -82,7 +103,7 @@ export const ItemPage: FC<Props> = (props) => {
                         </div>
                     </section>
                     <section>
-                        <h3>characteristics</h3>
+                        <h3>Characteristics</h3>
                         <div className={styles.characteristics}>
                             {activeItem.info?.map((e) => (
                                 <ItemCharacteristic
@@ -94,17 +115,16 @@ export const ItemPage: FC<Props> = (props) => {
                         </div>
                     </section>
                     <section className={styles.desc}>
-                        <h3>description</h3>
+                        <h3>Description</h3>
                         <div> {activeItem.description}</div>
                     </section>
-                    <section className={styles.like_it}>
+                    {!!itemsLikeIt.length ? <section className={styles.like_it}>
                         <h3>looks like it</h3>
                         <Grid columns="repeat(3, 200px)">
-                            {!!items.length
-                                ? itemsLikeIt.map((item) => <ItemCard key={item.id} {...item} />)
-                                : ""}
+                            {itemsLikeIt.map((item) => <ItemCard key={item.id} {...item} />)}
                         </Grid>
-                    </section>
+                    </section> : <></>}
+
                 </div>
                 {!isMobile && (
                     <div className={styles.sidebar}>
@@ -117,6 +137,9 @@ export const ItemPage: FC<Props> = (props) => {
                                             {activeItem.tel}
                                         </Button>
                                     </a>
+                                </div>
+                                <div className={styles.user}>
+                                    user
                                 </div>
                             </div>
                         </Sticky>
