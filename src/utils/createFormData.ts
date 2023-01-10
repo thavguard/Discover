@@ -2,7 +2,7 @@ export const createFormData = <T>(args: T) => {
     const formData = new FormData();
 
     for (let key in args) {
-        formData.append(key, args[key] as any);
+        formData.append(key, args[key] as any); // TODO: Настроить типизацию
     }
 
     return formData;

@@ -1,19 +1,16 @@
-import React, { FC, lazy, ReactNode, Suspense } from "react";
+import { FC } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAppSelector } from "../../hooks/hooks";
 import urls from 'settings/urls.json'
-
-import { Profile } from 'views/Profile/Profile'
 import { Home } from 'views/Home/Home'
 import { AddItem } from 'views/AddItem/AddItem'
 import { ItemPage } from 'views/Item/ItemPage'
 import { Login } from 'views/Login/Login'
 import { Signup } from 'views/Signup/Signup'
 import { Search } from 'views/Search/Search'
-import * as url from "url";
+import { ProfilePage } from "../../views/Profile/ProfilePage";
+import OtherProfile from "../../views/OtherProfile/OtherProfile";
 
-
-type Props = {};
 
 interface IRoute {
     path: string
@@ -23,7 +20,7 @@ interface IRoute {
 const authRoutes: IRoute[] = [
     {
         path: urls.profile,
-        component: <Profile/>
+        component: <ProfilePage/>
     },
     {
         path: urls.item.add,
@@ -46,6 +43,9 @@ const publicRoutes: IRoute[] = [
     {
         path: urls.search,
         component: <Search/>
+    }, {
+        path: urls.profile + '/:username',
+        component: <OtherProfile/>
     },
 ]
 
@@ -62,7 +62,7 @@ const notAuth: IRoute[] = [
     },
 ]
 
-export const AppRouter = ({}: Props) => {
+export const AppRouter: FC = ({}) => {
     const { isAuth, isInitDone } = useAppSelector((state) => state.auth);
 
     if (!isInitDone) return null;

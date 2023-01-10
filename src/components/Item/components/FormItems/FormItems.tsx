@@ -289,7 +289,7 @@ export const FormItems = ({}: Props) => {
                 />
                 {errors.tel && touched.tel && <Invalid>{errors.tel}</Invalid>}
             </Field>
-            <Button disabled={!isValid || itemSubmit}>create</Button>
+            <Button fullwidth disabled={!isValid || itemSubmit}>create</Button>
         </form>
     );
 };

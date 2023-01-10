@@ -26,4 +26,8 @@ export interface IUser {
     username: string;
     isActivated: boolean;
     avatar: string;
+    role: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
+

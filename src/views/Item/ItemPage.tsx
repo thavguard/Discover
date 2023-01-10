@@ -10,9 +10,11 @@ import { Loader } from "../../components/common/Loader/Loader";
 import { fetchActiveItem } from "../../components/Item/slice/items.slice";
 import { ItemCharacteristic } from "../../components/Item/components/ItemCharactiristic/ItemCharacteristic";
 import { useMediaQuery } from "usehooks-ts";
-import urls from 'settings/urls.json'
 import { IItem, IItemsResponse } from "../../components/Item/types";
 import { axios } from "../../API/axios";
+import { getUserById } from "../../API/utils";
+import { IUser } from "../../store/slices/auth/types";
+import urls from '../../settings/urls.json'
 
 type Props = {};
 
@@ -25,19 +27,30 @@ export const ItemPage: FC<Props> = (props) => {
     const { activeItem } = useAppSelector((state) => state.items);
 
     const [itemsLikeIt, setItemsLikeIt] = useState<IItem[]>([])
+    const [user, setUser] = useState<IUser>({} as IUser)
 
 
-    console.log(activeItem)
-
-    const fetchItemsLikeThis = async () => {
+    const fetchItemsLikeThis = async (itemTypeId: number) => {
         const { data } = await axios.get<IItemsResponse>('api/item', {
             params: {
-                itemTypeId: activeItem.itemTypeId
+                itemTypeId: itemTypeId
             }
         })
 
-
         setItemsLikeIt(data.items.filter(item => item.id !== +id!))
+    }
+
+    const fetchUser = async (id: number) => {
+        setUser({} as IUser)
+        const user = await getUserById(id)
+
+        setUser(user)
+
+        console.log(user)
+    }
+
+    const profileNavigate = (username: string) => {
+        navigate(urls.profile + '/' + username)
     }
 
 
@@ -50,10 +63,14 @@ export const ItemPage: FC<Props> = (props) => {
     }, [id]);
 
     useEffect(() => {
-        fetchItemsLikeThis()
+        if (activeItem.id) {
+            console.log('id', activeItem.id)
+            fetchItemsLikeThis(activeItem.itemTypeId)
+            fetchUser(activeItem.userId)
+        }
     }, [activeItem.id])
 
-    if (!activeItem.name) return <Loader/>;
+    if (!user.id) return <Loader/>;
 
     const address = activeItem.address;
 
@@ -78,12 +95,12 @@ export const ItemPage: FC<Props> = (props) => {
                     </section>
                     {isMobile && (
                         <div className={styles.sidebar}>
-                            <Sticky top={20} className={styles.sticky}>
+                            <Sticky top={20}>
                                 <div className={styles.price}>{activeItem.price} $</div>
                                 <div className={styles.info}>
                                     <div className={styles.phone}>
                                         <a className={styles.number} href={`tel:${activeItem.tel}`}>
-                                            <Button size="big" br="br-1">
+                                            <Button fullwidth size="big" br="br-1">
                                                 {activeItem.tel}
                                             </Button>
                                         </a>
@@ -128,18 +145,29 @@ export const ItemPage: FC<Props> = (props) => {
                 </div>
                 {!isMobile && (
                     <div className={styles.sidebar}>
-                        <Sticky top={20} className={styles.sticky}>
+                        <Sticky top={20}>
                             <div className={styles.price}>{activeItem.price} $</div>
                             <div className={styles.info}>
                                 <div className={styles.phone}>
                                     <a className={styles.number} href={`tel:${activeItem.tel}`}>
-                                        <Button size="big" br="br-1">
+                                        <Button fullwidth size="big" br="br-1">
                                             {activeItem.tel}
                                         </Button>
                                     </a>
                                 </div>
-                                <div className={styles.user}>
-                                    user
+                                <div className={styles.user} onClick={() => profileNavigate(user.username)}>
+                                    <div className={styles.userImg}>
+                                        <img src={`${process.env.REACT_APP_API_URL}/static/${user.avatar}`}
+                                             alt=""/>
+                                    </div>
+                                    <div className={styles.userInfo}>
+                                        <div className={styles.username}>
+                                            {user.username}
+                                        </div>
+                                        <div className={styles.userEmail}>
+                                            {user.email}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </Sticky>

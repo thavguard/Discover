@@ -1,5 +1,4 @@
 import React, { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { AppRouter } from "./components/AppRouter/AppRouter";
 import { Header } from "./components/common/Header/Header";
 import { Loader } from "./components/common/Loader/Loader";

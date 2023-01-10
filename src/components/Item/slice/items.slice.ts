@@ -29,7 +29,6 @@ export const itemsSlice = createSlice({
         setItemsLoading: (state, action: PayloadAction<boolean>) => {
             state.itemsLoading = action.payload
         }
-
     },
 });
 

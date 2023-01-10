@@ -24,6 +24,7 @@ export const Button: FC<PropsWithChildren<Props>> = ({
                                                          weight = 400,
                                                          variant = 'primary',
                                                      }) => {
+    console.log(fullwidth)
     return (
         <button
             className={classNames([styles.button])}
