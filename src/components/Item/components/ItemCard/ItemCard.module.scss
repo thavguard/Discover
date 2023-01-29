@@ -1,10 +1,26 @@
 @import "styles";
 
 .card {
-  max-width: 250px;
   width: 100%;
 
-  margin-bottom: 16px;
+  margin: 0 10px 25px 0;
+
+  &[data-size='default'] {
+    max-width: 260px;
+  }
+
+  &[data-size='small'] {
+    max-width: 170px;
+  }
+
+  &[data-size='medium'] {
+    max-width: 230px;
+  }
+
+  &[data-size='large'] {
+    max-width: 300px;
+  }
+
 
   .photo {
     .img {
@@ -30,20 +46,15 @@
       margin: 6px 0 4px;
 
       line-height: 18px;
-      cursor: pointer;
+
 
       .name {
         font-size: 15px;
         font-weight: 700;
+        cursor: pointer;
       }
 
-      .fav {
-        &:hover {
-          svg {
-            fill: red;
-          }
-        }
-      }
+
     }
 
     .price {

@@ -20,7 +20,7 @@
   }
 
   .content {
-    max-width: 710px;
+    max-width: 720px;
     width: 100%;
 
     margin-right: 30px;
@@ -88,17 +88,22 @@
     .info {
       .user {
         display: flex;
+        justify-content: space-between;
         align-items: center;
 
-        margin-top: 25px;
+        margin: 25px 0 16px 0;
+
 
         cursor: pointer;
 
         .userImg {
-          margin-right: 12px;
+          margin-left: 12px;
+          width: 70px;
+          height: 70px;
 
           img {
             width: 70px;
+            height: 70px;
             border-radius: 50%;
             border: 2px solid $gray;
           }
@@ -111,8 +116,15 @@
         }
 
       }
+
+      .sidebarButtons {
+        svg {
+          width: 24px;
+        }
+      }
     }
   }
+
 }
 
 @media (max-width: $mediaMobile) {
@@ -146,3 +158,6 @@
     }
   }
 }
+
+
+

@@ -1,9 +1,8 @@
-import { API_URL, axios } from "../../../API/axios";
-import axiosLib, { AxiosError } from "axios";
+import {API_URL, axios} from "../../../API/axios";
+import axiosLib from "axios";
 
-import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
-import { AuthResponse, AuthSlice, IUser } from "./types";
-import { log } from "@craco/craco/dist/lib/logger";
+import {createSlice, Dispatch, PayloadAction} from "@reduxjs/toolkit";
+import {AuthResponse, AuthSlice, IUser} from "./types";
 
 const initialState: AuthSlice = {
     user: {} as IUser,
@@ -63,7 +62,7 @@ export const registration =
                 "/auth/registration",
                 formData,
                 {
-                    headers: { "Content-Type": "multipart/form-data" },
+                    headers: {"Content-Type": "multipart/form-data"},
                 }
             );
             localStorage.setItem("token", response.data.accessToken);
@@ -91,12 +90,13 @@ export const logout = () => async (dispatch: Dispatch) => {
 };
 
 
+
 export const checkAuth = () => async (dispatch: Dispatch) => {
     dispatch(authSlice.actions.setLoading(true));
     try {
         const response = await axiosLib.get<AuthResponse>(
             `${API_URL}/auth/refresh`,
-            { withCredentials: true }
+            {withCredentials: true}
         );
         localStorage.setItem("token", response.data.accessToken);
         dispatch(authSlice.actions.setUser(response.data.user));

@@ -5,6 +5,7 @@ export interface ItemsState {
     activeItem: IItem;
     itemCharacteristics: ItemCharacteristic[];
     itemsLoading: boolean
+    favoriteItems: favoriteItem[]
 }
 
 export interface ItemCharacteristic {
@@ -12,7 +13,11 @@ export interface ItemCharacteristic {
     id: number;
 }
 
-// export interface ItemCharacteristicInput {
-//     title: string;
-//     description: string;
-// }
+export interface favoriteItem {
+    id: number
+    createdAt: string
+    updatedAt: string
+    favoriteId: number
+    itemId: number
+
+}

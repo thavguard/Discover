@@ -4,7 +4,6 @@ import { fetchHomeItems } from "../../slice/home.slice";
 import styles from "./Filter.module.scss";
 import { Input } from "../../../core-ui/Input/Input";
 import { SelectType } from "../../../Item/components/SelectType/SelectType";
-import { fetchItemTypes } from "../../../Item/slice/items.slice";
 import Calendar from "react-calendar";
 import "../../../core-ui/Calendar/Calendar.scss";
 import { Button } from "../../../core-ui/Button/Button";
@@ -75,10 +74,7 @@ const Filter: FC<Props> = ({ items, total, }) => {
     const handleClickOutside = (e: MouseEvent) => {
         setShowCalendar(false);
     };
-
-    useEffect(() => {
-        dispatch(fetchItemTypes());
-    }, []);
+    
 
     useEffect(() => {
         dispatch(fetchSearchItems({ filter }))

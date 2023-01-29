@@ -1,22 +1,25 @@
 .icon {
   &[data-size="default"] {
     svg {
-      width: 32px;
-      height: auto;
+      width: 1em;
+      height: 1em;
     }
   }
+
   &[data-size="small"] {
     svg {
       width: 20px;
       height: auto;
     }
   }
+
   &[data-size="medium"] {
     svg {
       width: 48px;
       height: auto;
     }
   }
+
   &[data-size="large"] {
     svg {
       width: 56px;

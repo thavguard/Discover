@@ -1,9 +1,6 @@
-import React, { ChangeEventHandler, FocusEventHandler } from "react";
-import styles from "./Select.module.scss";
+import React from "react";
 import { Option } from "./types";
-import { customStyles } from "./Select.styles";
 import { Select as SelectLib } from '@chakra-ui/react'
-import { ActionMeta } from "react-select";
 
 
 interface Props {
@@ -31,6 +28,10 @@ export const Select = ({
                 placeholder={placeholder}
                 onChange={(e) => onChange(e.currentTarget.value)}
                 onBlur={onBlur}
+                borderColor={'inputBorder.100'}
+                borderWidth={'2px'}
+                height={'44px'}
+                _hover={{ borderColor: 'inputBorder.200' }}
             >
                 {options.map(item => <option value={item.value}>{item.label}</option>)}
             </SelectLib>

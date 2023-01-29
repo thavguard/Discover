@@ -1,0 +1,16 @@
+.like {
+  cursor: pointer;
+
+  &[data-isActive='true'] {
+    svg {
+      fill: red;
+    }
+  }
+
+  //&:hover {
+  //  svg {
+  //    fill: red;
+  //  }
+  //}
+
+}

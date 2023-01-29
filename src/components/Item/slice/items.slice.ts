@@ -1,13 +1,14 @@
 import { createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
 import { axios } from "../../../API/axios";
 import { IItem, IItemType } from "../types";
-import { ItemCharacteristic, ItemsState } from "../../../store/types";
+import { favoriteItem, ItemCharacteristic, ItemsState } from "../../../store/types";
 
 const initialState: ItemsState = {
     itemTypes: [],
     activeItem: {} as IItem,
     itemCharacteristics: [],
-    itemsLoading: false
+    itemsLoading: false,
+    favoriteItems: [],
 };
 
 export const itemsSlice = createSlice({
@@ -28,6 +29,9 @@ export const itemsSlice = createSlice({
         },
         setItemsLoading: (state, action: PayloadAction<boolean>) => {
             state.itemsLoading = action.payload
+        },
+        setFavoriteItems: (state, action: PayloadAction<favoriteItem[]>) => {
+            state.favoriteItems = action.payload
         }
     },
 });
@@ -62,3 +66,34 @@ export const fetchItemCharacteristics =
 
         dispatch(itemsSlice.actions.setItemCharacteristics(data));
     };
+
+export const fetchFavoriteItems = () => async (dispatch: Dispatch) => {
+    const { data } = await axios.get('/api/fav')
+    dispatch(itemsSlice.actions.setFavoriteItems(data))
+}
+
+export const addFavoriteItem = (itemId: number) => async (dispatch: Dispatch) => {
+    try {
+        await axios.post('/api/fav', {
+            itemId
+        })
+        return true
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+}
+
+export const removeFavoriteItem = (itemId: number) => async (dispatch: Dispatch) => {
+    try {
+        await axios.delete('/api/fav', {
+            data: {
+                itemId
+            }
+        })
+        return true
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+}

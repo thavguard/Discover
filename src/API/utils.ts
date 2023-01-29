@@ -1,5 +1,7 @@
 import { axios } from "./axios";
 import { IUser } from "../store/slices/auth/types";
+import { IFilterItems } from "../components/Home/types/types";
+import { IItem, IItemsResponse } from "../components/Item/types";
 
 export const getUserById = async (id: number) => {
     const { data } = await axios.get<IUser>('api/user/' + id)
@@ -15,3 +17,4 @@ export const getUserByUsername = async (username: string) => {
 
     return data
 }
+

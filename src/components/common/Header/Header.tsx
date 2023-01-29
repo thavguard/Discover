@@ -1,15 +1,14 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import styles from "./Header.module.scss";
-import cartImg from "../../assets/images/cart.png";
 import { logout } from "../../../store/slices/auth/auth.slice";
 import { Button } from "../../core-ui/Button/Button";
 import urls from 'settings/urls.json'
 import { Input } from "../../core-ui/Input/Input";
 import { searchSlice } from "../../Search/slice/search.slice";
-import { useSearchParams } from "react-router-dom";
 import Sticky from "react-stickynode";
+import { Icon } from "../../core-ui/Icon/Icon";
 
 
 type Props = {};
@@ -37,10 +36,12 @@ export const Header: FC<Props> = ({}) => {
         }
     }
 
-    const onLogout = () => {
-        dispatch(logout());
-        navigate(urls.login);
-    };
+
+    const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            onSearch()
+        }
+    }
 
     useEffect(() => {
         setSticky(!url.includes(urls.item.root))
@@ -62,20 +63,20 @@ export const Header: FC<Props> = ({}) => {
                             </div>
                             <div className={styles.navBtn} onClick={() => navigate(urls.profile)}>
                                 <div className={styles.user}>
-                                    {user.username}
+                                    <Icon name={'profile'}/>
                                 </div>
                             </div>
                         </>
                         :
                         <>
                             <div className={styles.navBtn}>
-                                <Button weight={600} onClick={() => navigate(urls.login)}>LOG IN</Button></div>
+                                <Button weight={600} onClick={() => navigate(urls.login)}>Login</Button></div>
                             <div className={styles.navBtn}>
                                 <Button
                                     variant={'outlined'}
                                     onClick={() => navigate(urls.signup)}
                                 >
-                                    Sign up
+                                    Signup
                                 </Button>
                             </div>
                         </>
@@ -86,7 +87,12 @@ export const Header: FC<Props> = ({}) => {
                 <div className={styles.search}>
                     <div className={styles.input__box}>
                         <div className={styles.input}>
-                            <Input value={filter.name} onChange={onChangeName} placeholder={'find somethings'}/>
+                            <Input
+                                onKeyDown={onEnter}
+                                value={filter.name}
+                                onChange={onChangeName}
+                                placeholder={'find somethings'}
+                            />
                         </div>
                         <div className={styles.search__btn} onClick={onSearch}>Search</div>
                     </div>

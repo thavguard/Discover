@@ -33,7 +33,16 @@
   &[data-variant='outlined'] {
     background: none;
 
-    border: 1px solid $white-100;
+    border: 1px solid $black-100;
+    color: $black-100;
+  }
+
+  &[data-variant='black'] {
+    background: $black-100;
+
+    &:hover {
+      background: $black-200;
+    }
   }
 
 
@@ -70,7 +79,11 @@
       background: $gray;
       transform: none;
 
-      animation: 0.2s 1 normal errorBtn;
+      //animation: 0.2s 1 normal errorBtn;
+    }
+
+    &:hover {
+      background: $gray;
     }
   }
 

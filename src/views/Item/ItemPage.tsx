@@ -1,13 +1,13 @@
-import { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../components/core-ui/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import styles from "./ItemPage.module.scss";
 import Sticky from "react-stickynode";
 import { ItemCard } from "../../components/Item/components/ItemCard/ItemCard";
-import { Grid } from "../../components/Home/components/Grid/Grid";
+import { GridItems } from "../../components/Home/components/Grid/GridItems";
 import { Loader } from "../../components/common/Loader/Loader";
-import { fetchActiveItem } from "../../components/Item/slice/items.slice";
+import { addFavoriteItem, fetchActiveItem, removeFavoriteItem } from "../../components/Item/slice/items.slice";
 import { ItemCharacteristic } from "../../components/Item/components/ItemCharactiristic/ItemCharacteristic";
 import { useMediaQuery } from "usehooks-ts";
 import { IItem, IItemsResponse } from "../../components/Item/types";
@@ -15,6 +15,8 @@ import { axios } from "../../API/axios";
 import { getUserById } from "../../API/utils";
 import { IUser } from "../../store/slices/auth/types";
 import urls from '../../settings/urls.json'
+import Like from "../../components/core-ui/Like/Like";
+
 
 type Props = {};
 
@@ -24,10 +26,13 @@ export const ItemPage: FC<Props> = (props) => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery("(max-width: 600px)");
 
-    const { activeItem } = useAppSelector((state) => state.items);
+    const { activeItem, itemTypes, favoriteItems } = useAppSelector((state) => state.items);
+    const { isAuth } = useAppSelector(state => state.auth)
+
 
     const [itemsLikeIt, setItemsLikeIt] = useState<IItem[]>([])
     const [user, setUser] = useState<IUser>({} as IUser)
+    const [isFav, setIsFav] = useState<boolean>(false)
 
 
     const fetchItemsLikeThis = async (itemTypeId: number) => {
@@ -53,6 +58,24 @@ export const ItemPage: FC<Props> = (props) => {
         navigate(urls.profile + '/' + username)
     }
 
+    const addToFav = async () => {
+        if (isAuth) {
+            if (isFav) {
+                const success = await dispatch(removeFavoriteItem(+id!))
+                if (success) {
+                    setIsFav(false)
+                }
+            } else {
+                const success = await dispatch(addFavoriteItem(+id!))
+                if (success) {
+                    setIsFav(true)
+                }
+            }
+        } else {
+            navigate(urls.login)
+        }
+    }
+
 
     useEffect(() => {
         if (id) {
@@ -63,20 +86,26 @@ export const ItemPage: FC<Props> = (props) => {
     }, [id]);
 
     useEffect(() => {
-        if (activeItem.id) {
-            console.log('id', activeItem.id)
+        if (activeItem) {
             fetchItemsLikeThis(activeItem.itemTypeId)
             fetchUser(activeItem.userId)
         }
-    }, [activeItem.id])
+    }, [activeItem])
 
-    if (!user.id) return <Loader/>;
+    useEffect(() => {
+        if (isAuth) {
+            setIsFav(favoriteItems.some(item => item.itemId === +id!))
+        }
+    }, [favoriteItems])
+
+
+    if (!user.id || !activeItem) return <Loader/>; // TODO: Пофиксить костыль
 
     const address = activeItem.address;
 
     return (
         <div className={styles.item}>
-            <div className={styles.itemType}>smartphones</div>
+            <div className={styles.itemType}>{itemTypes.find(item => item.id === activeItem.itemTypeId)?.name}</div>
             <div className={styles.body}>
                 <div className={styles.content}>
                     <div className={styles.title}>{activeItem.name}</div>
@@ -137,9 +166,9 @@ export const ItemPage: FC<Props> = (props) => {
                     </section>
                     {!!itemsLikeIt.length ? <section className={styles.like_it}>
                         <h3>looks like it</h3>
-                        <Grid columns="repeat(3, 200px)">
-                            {itemsLikeIt.map((item) => <ItemCard key={item.id} {...item} />)}
-                        </Grid>
+                        <GridItems>
+                            {itemsLikeIt.map((item) => <ItemCard key={item.id} {...item} size={'small'}/>)}
+                        </GridItems>
                     </section> : <></>}
 
                 </div>
@@ -156,10 +185,6 @@ export const ItemPage: FC<Props> = (props) => {
                                     </a>
                                 </div>
                                 <div className={styles.user} onClick={() => profileNavigate(user.username)}>
-                                    <div className={styles.userImg}>
-                                        <img src={`${process.env.REACT_APP_API_URL}/static/${user.avatar}`}
-                                             alt=""/>
-                                    </div>
                                     <div className={styles.userInfo}>
                                         <div className={styles.username}>
                                             {user.username}
@@ -167,6 +192,15 @@ export const ItemPage: FC<Props> = (props) => {
                                         <div className={styles.userEmail}>
                                             {user.email}
                                         </div>
+                                    </div>
+                                    <div className={styles.userImg}>
+                                        <img src={`${process.env.REACT_APP_API_URL}/static/${user.avatar}`}
+                                             alt=""/>
+                                    </div>
+                                </div>
+                                <div className={styles.sidebarButtons}>
+                                    <div className={styles.like} onClick={addToFav}>
+                                        <Like isActive={isFav}/>
                                     </div>
                                 </div>
                             </div>

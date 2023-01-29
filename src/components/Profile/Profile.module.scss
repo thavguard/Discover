@@ -1,25 +1,72 @@
-.user {
-  font-size: 20px;
-  margin: 20px 0 30px 0;
-  span {
-    font-weight: 600;
-  }
+@import "styles";
 
-  div {
-    font-size: 16px;
-  }
-}
-
-.create-item {
+.profile {
   display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-}
+  justify-content: space-between;
 
-.your_ard {
-  font-size: 20px;
-  font-weight: 500;
-  padding-bottom: 5px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid #212121;
+  .sidebar {
+    max-width: 300px;
+    width: 100%;
+
+    .user {
+      padding: 12px;
+      border: 1px solid $gray;
+      border-radius: 8px;
+
+      .info {
+        .username {
+          font-size: 24px;
+          font-weight: 500;
+
+          margin-bottom: 2px;
+        }
+
+        .email {
+          font-size: 18px;
+          font-weight: 600;
+
+          margin-bottom: 2px;
+        }
+
+        .role {
+          font-size: 16px;
+
+          margin-bottom: 16px;
+        }
+
+        .phone {
+          button {
+            padding: 12px 16px;
+
+            font-size: 18px;
+            font-weight: 600;
+          }
+        }
+
+
+        .favorite {
+          font-size: 16px;
+          font-weight: 600;
+          color: $primary;
+
+          cursor: pointer;
+
+
+          //margin-bottom: 4px;
+        }
+
+        .logout {
+          color: $red;
+          font-weight: 500;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .container {
+    width: 100%;
+    margin-left: 50px;
+  }
 }

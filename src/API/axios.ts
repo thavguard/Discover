@@ -11,7 +11,10 @@ export const axios = axiosLib.create({
 });
 
 axios.interceptors.request.use((config) => {
-    config.headers!.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    if (config.headers) {
+        config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    }
+
     return config;
 });
 

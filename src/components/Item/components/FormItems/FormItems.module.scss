@@ -4,16 +4,18 @@
   max-width: 520px;
   width: 100%;
 
-  margin-bottom: 30px;
+  //margin-bottom: 30px;
 
+  .photo {
 
-  .swiper {
-    max-width: 300px;
-    width: 100%;
   }
 
   .duo {
     @include duo();
+  }
+
+  .footer {
+    margin-top: 30px;
   }
 
 }

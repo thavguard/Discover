@@ -14,6 +14,17 @@ export const theme = extendTheme({
         },
         secondary: {
             100: variables.secondary
+        },
+        white: {
+            100: variables.white100
+        },
+        inputBorder: {
+            100: variables.inputBorder,
+            200: variables.inputBorder100,
+        },
+        placeholder: {
+            100: variables.placeholder
         }
+
     }
 })

@@ -10,7 +10,7 @@ type Props = {
     size?: "big";
     disabled?: boolean;
     weight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-    variant?: 'primary' | 'secondary' | 'outlined'
+    variant?: 'primary' | 'secondary' | 'outlined' | 'black'
 };
 
 export const Button: FC<PropsWithChildren<Props>> = ({
@@ -24,7 +24,6 @@ export const Button: FC<PropsWithChildren<Props>> = ({
                                                          weight = 400,
                                                          variant = 'primary',
                                                      }) => {
-    console.log(fullwidth)
     return (
         <button
             className={classNames([styles.button])}

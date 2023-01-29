@@ -1,10 +1,12 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/hooks";
 import styles from "./ItemCard.module.scss";
 import { IItem } from "../../types";
 import { Icon } from "components/core-ui/Icon/Icon";
 import urls from 'settings/urls.json'
+import Like from "../../../core-ui/Like/Like";
+import { addFavoriteItem, fetchFavoriteItems, removeFavoriteItem } from "../../slice/items.slice";
 
 export const ItemCard = forwardRef<HTMLDivElement, IItem>(
     (
@@ -22,10 +24,17 @@ export const ItemCard = forwardRef<HTMLDivElement, IItem>(
             info,
             tel,
             userId,
-        }: IItem,
+            size = 'default'
+        },
         ref
     ) => {
         const navigate = useNavigate();
+        const dispatch = useAppDispatch()
+
+        const { favoriteItems } = useAppSelector(state => state.items)
+        const { isAuth } = useAppSelector(state => state.auth)
+
+        const [isFav, setIsFav] = useState<boolean>(false)
 
         const navigateToItemPage = () => {
             const a = document.createElement("a");
@@ -34,8 +43,35 @@ export const ItemCard = forwardRef<HTMLDivElement, IItem>(
             a.click();
         };
 
+        const addToFav = async () => {
+            if (isAuth) {
+                if (isFav) {
+                    const success = await dispatch(removeFavoriteItem(id))
+                    if (success) {
+                        setIsFav(false)
+                    }
+                } else {
+                    const success = await dispatch(addFavoriteItem(id))
+                    if (success) {
+                        setIsFav(true)
+                    }
+                }
+
+                dispatch(fetchFavoriteItems())  // TODO: Отладить алгоритм обновления избранных товаров
+            } else {
+                navigate(urls.login)
+            }
+        }
+
+
+        useEffect(() => {
+            if (isAuth) {
+                setIsFav(favoriteItems.some(item => item.itemId === id))
+            }
+        }, [favoriteItems])
+
         return (
-            <div className={styles.card}>
+            <div className={styles.card} data-size={size}>
                 <div className={styles.photo} onClick={navigateToItemPage}>
                     <div className={styles.img}>
                         <img
@@ -49,8 +85,8 @@ export const ItemCard = forwardRef<HTMLDivElement, IItem>(
                         <div className={styles.name} onClick={navigateToItemPage}>
                             {name}
                         </div>
-                        <div className={styles.fav}>
-                            <Icon name="heartSVG" size="small"/>
+                        <div className={styles.fav} onClick={addToFav}>
+                            <Like isActive={isFav}/>
                         </div>
                     </div>
                     <div className={styles.price}>{price} ₽</div>

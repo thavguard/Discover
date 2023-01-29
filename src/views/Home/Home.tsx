@@ -7,7 +7,7 @@ import {
     useState,
 } from "react";
 import { ItemCard } from "../../components/Item/components/ItemCard/ItemCard";
-import { Grid } from "../../components/Home/components/Grid/Grid";
+import { GridItems } from "../../components/Home/components/Grid/GridItems";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import styles from "./Home.module.scss";
 import { PageTitle } from "../../components/core-ui/PageTitle/PageTitle";
@@ -69,7 +69,7 @@ export const Home: FC = () => {
             )}
 
 
-            <div className={styles.items}>
+            <GridItems>
                 {itemsLoading ? (
                     <Loader/>
                 ) : !!items.length ? (
@@ -82,7 +82,7 @@ export const Home: FC = () => {
                 ) : (
                     "Простите, по данному запросу пока нет товаров"
                 )}
-            </div>
+            </GridItems>
         </div>
     );
 };

@@ -18,6 +18,8 @@ const initialState: ISearchState = {
         name: "",
         price: [0, Infinity],
         wasCreated: "",
+        userId: 0,
+        itemId: [],
     },
     page: 1,
 };
